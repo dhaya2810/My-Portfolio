@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhayanandhan GK - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#visionary">Philosophy</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h1 class="animated-text">Hii, This is <span class="highlight">Dhayanandhan GK</span></h1>
+                    <h2 class="animated-text typing-effect"></h2>
+                    <style>
+                        .typing-effect {
+                            display: inline-block;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            border-right: 2px solid;
+                            animation: blink 0.5s step-end infinite alternate;
+                        }
+
+                        @keyframes blink {
+                            from {
+                                border-color: transparent;
+                            }
+                            to {
+                                border-color: black;
+                            }
+                        }
+                    </style>
+                    <script>
+                        const typingEffectElement = document.querySelector('.typing-effect');
+                        const texts = ["Front End Developer", "UI/UX Enthusiast"];
+                        const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A1"];
+                        let index = 0;
+                        let charIndex = 0;
+                        let isDeleting = false;
+
+                        function typeText() {
+                            const currentText = texts[index];
+                            if (isDeleting) {
+                                charIndex--;
+                            } else {
+                                charIndex++;
+                            }
+
+                            typingEffectElement.textContent = currentText.substring(0, charIndex);
+
+                            if (!isDeleting && charIndex === currentText.length) {
+                                isDeleting = true;
+                                setTimeout(typeText, 1000); // Pause before deleting
+                            } else if (isDeleting && charIndex === 0) {
+                                isDeleting = false;
+                                index = (index + 1) % texts.length;
+                                typingEffectElement.style.color = colors[Math.floor(Math.random() * colors.length)];
+                                setTimeout(typeText, 500); // Pause before typing next text
+                            } else {
+                                setTimeout(typeText, isDeleting ? 50 : 100); // Typing and deleting speed
+                            }
+                        }
+
+                        typeText(); // Start the typing effect
+                    </script>
+                    <p class="animated-text">A passionate developer with expertise in crafting responsive designs and interactive user experiences. Dedicated to delivering high-quality solutions and continuously learning new technologies.</p>
+                    <a href="https://drive.google.com/file/d/1nsVC6hZ6xLMUCTRXtvpZJ2j1NnudFr5I/view?usp=sharing" class="btn animated-text"> Check resume</a>
+                       
+                </div>
+                <div class="about-image animated-image">
+                    <img src="https://media-hosting.imagekit.io//35d4248b3c4b4f88/WhatsApp%20Image%202024-09-25%20at%2020.30.16_9bdc9750.jpg?Expires=1835370170&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=FYi9t37z0ivRKgxc3F6TUuhe8oaCtr9-zFO2flZtUcg2YkCesTEByBSv~jge~hdQofLiMNXA3ZGOgguQQ9fldIi1NiYSRglQJuJ1u9ZjGZtrHTo~xHPr5iBes5kWu3a-jKi2E4qOhtQG2cuOy36K7~Pk4IgnmYw3Tm-8cZOgZZ6fPA7DC-ke4~DXX6JWcn4BEPD55SaFR32XOZqq1yhHGrjK~BElLnKqUKAlLK6cGSDUfCxLMj07ynooUEHN8xZn3Y~QkJC2uDm0IizTr8-e7ZBFOxKjiGXN7ZpCeDKHV~L8BAnB9Boc7RT2s865J2kDb5kENgdIL6xaoZlWe1gY7w__" alt="Dhayanandhan GK">
+            </div>
+        </div>
+    </section>
+    <section id="skills" class="section">
+        <div class="section-content">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-box">
+                    <h3>Front End</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML">
+                            <p>HTML</p>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS">
+                            <p>CSS</p>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript">
+                            <p>JavaScript</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <h3>Tools</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+                            <p>GitHub</p>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn-icons-png.flaticon.com/512/906/906324.png" alt="VS Code">
+                            <p>VS Code</p>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Vercel">
+                            <p>Vercel</p>
+                        </div>
+                    </div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="internships" class="section">
+        <div class="section-content">
+            <h2>Internships</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://media-hosting.imagekit.io/0757571dedbd4a62/pexels-padrinan-2882568.jpg?Expires=1841802383&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=suvDNP579B~BjTB1hqDsQTw0M8ufG~ouXOXIEYSkd9w3hKTCIhNB7AQpKQ5J4JglYhTxWtyiN2ysqPoVbPE4bZzc8GXKUfODG1czlpPPrNfXwB9s84x-J25e7iMIebZC2UCOHozY0KaTtT2KJvKRi969we7fUejQ9EVNBmSQ9MdU2Ga2le9FJxm0NXzT~frzcL1RmxA4sZXboPX94rPgDDewwZDOjr3RSb8WJYbwEv-foSynslXdy~-Kmjs-CixTnlLPMd4VBmoWNwWFKOa8eNEWDTickrGiCNPQgqF0lghIR5tgnnvxC6YMDqFXEBj1MusZMDZvEQpyNT9gwjFltw__');"></div>
+                    <h3>Software Development Intern</h3>
+                    <p><strong>Company:</strong> Micro IT - May 2025</p>
+                    <p><strong>Description:</strong> Worked on software development projects, including designing, coding, and debugging applications. Gained hands-on experience in software engineering principles and practices.</p>
+                    <p><strong>Place: </strong>Coimbatore</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://media-hosting.imagekit.io/651ce2a26cb14d74/pexels-padrinan-2882654.jpg?Expires=1841802462&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=I-GGFWFDurJSu5DL--nc9eumr4FTmNORZ5V1kU7-IryytBqfd~mlDIjr7QmhizvbTnMsIjdj45S1A0i3UDANYjh1gORfGC5xUtupc37TmN6uVdMpXGVnYEE15diz7j6-21wDdY2Ax2WmRgclGOKGwMMb40FsNOb61kneZACFtYHjA5Rbhvptagf9Qj2nG8OnLuYtxhFRObGGa40K9whVvEg5mbzRjK7hXd2nK8lT3M8TH84vWD9chl3G0ZLJekEYa3VZaAak-B1CzXJpaA2sj6b8n6BG9TWydbw6CUhKrdwaBFdTImyHLYlu9K8b~IWDS22tTAqQdxH0WsHl5zU2PA__');"></div>
+                    <h3>Cyber Security Intern</h3>
+                    <p><strong>Company:</strong> Prodigy Info Tech - Apr 2025</p>
+                    <p><strong>Description:</strong> Gained hands-on experience in identifying vulnerabilities, implementing security measures, and conducting penetration testing. Enhanced knowledge in ethical hacking and network security.</p>
+                    <p><strong>Place:</strong> Coimbatore</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://media-hosting.imagekit.io/5090af0efdb74996/pexels-padrinan-2882567.jpg?Expires=1841802732&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ciZFOmcjfvzi1emUr5wpHkR8XBMBOpnuHvYheI3jyFiVoB7FXT4w5YiIsqWMV-fUQSatpAURXXHJ-zPDa6Dxws8cDwzm0WdiWB1r7tSwTW2WzOdIzhyCyMOpubvi6P-UxXvhxojYGvVk2pzbOTKBWY-Kj~10gZuWWsENyvuosIUP7S1FyA0X3EzxwwE8PZbWE7VjZfYUkU~xBk4bqKOQArK1piNNTf-2OEcnRYvyaTBbQVEIDzz30pYs4P7~DNrbW47TlDFwmrhdW3kQ3Zs~HIayAhTK5mArULPvtZz7jyecxr2lQD9bv9SPDZ~pDdCJoxaREzFRIMKXCWgGdxJ~uA__');"></div>
+                    <h3>Computer Networks Intern</h3>
+                    <p><strong>Company:</strong> IBM - Oct 2023</p>
+                    <p><strong>Description:</strong> Gained hands-on experience in configuring and troubleshooting computer networks. Worked on network protocols, routing, and switching to ensure efficient data communication.</p>
+                    <p><strong>Place:</strong>Coimbatore</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="visionary" class="section">
+        <div class="section-content">
+            <h2>Philosophy</h2>
+            <div class="visionary-container">
+                <div class="visionary-box">
+                    <h3 style="color: #FF5733; font-family: 'Poppins', sans-serif; font-weight: 600; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);">Innovation</h3>
+                    <p>Innovation drives progress, and I strive to bring fresh ideas to every project I undertake. My goal is to push boundaries and create solutions that stand out.</p>
+                    <p>By combining creativity with technical expertise, I aim to deliver impactful digital experiences that leave a lasting impression.</p>
+                </div>
+                <div class="visionary-box">
+                    <h3 style="color: #FF5733; font-family: 'Poppins', sans-serif; font-weight: 600; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">Why Choose Me?</h3>
+                    <p>As a dedicated React Frontend Developer, I specialize in building seamless and engaging user interfaces.</p>
+                    <p>With a strong focus on innovation and attention to detail, I aim to deliver solutions that not only meet but exceed expectations. Let's collaborate to create impactful digital experiences together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="section-content">
+            <h2>Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://media-hosting.imagekit.io/e182de743e1349bf/10607573.jpg?Expires=1841762929&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=j21XTWWRjGoA7QTIg3MaPY9M15oFOTS7rvF3aawlfAnNa5G8BNnRr-DCNo5yZV~DVlL7OaQFHp-FA-Af3I~qHv-yHExSe~jeQzlJh-Qn7y4bt3Mh4OslvM5-SNRB7aC6zQ2hOmc7NJcyS9NHipdvwikcTTfIE3cTCuRaJQh9ztexhqockFC3wP57jB5jaGriVp1uBltfDxtjra3hGPntrHY5Zf2tVaLcoSBl8uv3n-dci2w511LfCWEMfeEfKXu-hTiFrl6FI1uYBUShBlPLfzblzs~MompWPiFrkv7hB7Qv0qTo-tOcbBwvHYKc3rH7NaFTQdXUQKZG2tUdukJuFA__');"></div>
+                    <h3>E-commerce Website</h3>
+                    <p>A unique e-commerce platform offering a delightful selection of sweets and snake-themed merchandise, blending creativity with functionality.</p>
+                    <div class="project-links">
+                        <a href="https://dhayaxweb.neocities.org/" target="_blank">Link</a>
+                        
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://media-hosting.imagekit.io/ca40b79967c14c7d/Design%20-%20Graphic%20Design%20Portfolio%20Website%20in%20Black%20%20White%20%20Dark%20Classic%20Minimal%20Style%20(1).png?Expires=1841763784&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=QFk9Atipg3~lCHYnqmsvETd6iZuJn-6TbtuIzckSYw36si7CtSFdaQiRR4xCW0Ru~iNGFlXjS9X-dHZozU8IpeL3uEqSb7lkRyiEqyTG0CuaPfkgv1W65nTxN0XGPmJONSZ4m0KjntHOlUDR-PjssK8BkLcMGr~pawYJYgVT2mjbi70fIxbGIDP4-CZC4~iAP8KN17Fhrq~-h8PsmXgGoqHNGGy9rQApAq4eJHZKpWpuNm6FxKpRcKX6SQx2v6Dg0GW6ExaDrlC6dJVM0ERYnfQTb0KtjPykcUMqNOEyowCdHhj1svm4ydlMz77ITYKWXZCaPzMGxiRwjf-C4guD2A__');"></div>
+                    <h3>Portfolio Website</h3>
+                    <p>A modern and responsive portfolio website to showcase my skills, projects, and achievements effectively.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank">Link</a>
+                        
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://media-hosting.imagekit.io//792e4b9e97624c97/11557.jpg?Expires=1835447153&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=1Eq5fmb4fG7B8O9p8UYAZ7RcP2l5Btlzo5MI2eCHmbgznz3zJmRMLAFcjyyImVdjybMrbkPQ8a1LP8CeaECjXXP02ArcZHIcd1ICABC5uFyn5bYLPVpJJKVXzpAhMZv-goBIPGTSnxnMH2zqpz3KwCSdR2GZufVFf3rSMU4GQftXUmXXhTwfcjG1UbegxZpkx~NZ8kAWB27iv5mR7PrhWE4QHkuGUVHFVy28~YhK8-bfcoayh31WcT1MFm5Y4aOY8h3LjrkX5k2Li7jkDJTVhBugjEW-yFx0dZewiySD8OhhQnZq2gigxBwx1gE~ID5Q~NVUcBISheift0hHQjH7-Q__');"></div>
+                    <h3>Event Finder Website</h3>
+                    <p>An intuitive platform to discover and explore events happening around you, with features like filtering by category and location.</p>
+                    <div class="project-links">
+                        <a href="https://eventfinderr.neocities.org/" target="_blank">Link</a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://media-hosting.imagekit.io/c115817f74f4462f/google-weather-app-temperature.avif?Expires=1841803302&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=I5gVznoitPCiaudIvs00OWEfQ~2vd8s-9JTrlRLTZiy2LuLiQMLBA3Z8SlLa9A-JnVgvrgjQ7arRw6Ap4phL7laSizUX8i4PDGLkXmBMz7ib4taM24fCu828kLi7Knw67gf6HfbsCAUgFeFr0GEWQ4aQ829X98cSliw6WaVFxxIt15pYfgVlZSOPBm8~HabteefFJZZOBH39BKPqsOJSH1xSavqy4Jftr4lm7P6mR~LbSmxpY7GT9XXAWhrDJKCcBtHC8PFoi~HP-g8Rorjwjbu2e01s0OE6KhFweEfEEh3BNzmHUN-EgMwhUtVi~svMtHNmf5gEwfuE1SEllNbypQ__');"></div>
+                    <h3>Weather App</h3>
+                    <p>A simple and intuitive weather application providing real-time weather updates and forecasts.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/dhaya2810/tasks/blob/main/Task-1/t5.html" target="_blank">Link</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://media-hosting.imagekit.io/0c7ae67957154fc7/ec5173a804ea79feadb9ee04ca68de47648b59f8.png?Expires=1841803482&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=eF3IRMw7leMxbp9GHXVqYjUNsmh70QfNbPJ6zBmGlKfMm1ka5I65krsaMOvr~Jim6kw64CSXaSngYnHId2RfSnWCrZ6EVTTDJiktEwT5o3TQLAXPy4BeiCE2e6kOHmMbu1sIMhj9-jrAW~xSS6aQfK9YXDXdB31YMxS23iwTJhE8oNHbLFzMQE2J1zT6w0Mjybi2BVrHb1fGiFxsosB-3GxlCQEX1XJLDfdmNwrdfj98sNugpDf7a7~NxEOITY253pjNBb880HTaoL0MVRuWWEnmk-DtxaXynS37hF-47FkAeThFsbXjUYAH5x8JT6YZ5guRdiy3JUR~MuKAZs7x2A__');"></div>
+                    <h3>Task Manager App</h3>
+                    <p>An efficient task management tool to organize and prioritize your daily activities.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/sujitmahapatra/Task-Manager-Website." target="_blank">Link</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://media-hosting.imagekit.io/e60d9427f84b4981/4785b6142c3bd46b89f484286f0e60f7288f1d91.png?Expires=1841804856&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Afcl6cIzbyQDzs77-9EwJaw1qk921ieGSzgWWYbo9eQauLM4H3H8toqBOfcp-BIMLs60n11RAXvwXa3bgslaiPJlVxOvBbthMQfCU3dUfsk8hPAPqIhsc8gFB85BG6rjTQTxT2RKnSrzaKO~qu0yfgQdVK8TdlexTwMC~RrRRN1TJfWE6R2pD0ZQaqQfbpZBfu49tlmjFnZPqaDYuhmYiSTruK4hI1B7wCqtz5PGije2PTy4sN2g69~zfOemivCnvQJ~qrBVz53O0~iQqIqK6dZwxsgA1-BXCaJ2CmknKVTiPkJHuuOSVy9LQnwqwoeyiWqQtkYR-dUaEbvjJhK8Dg__');"></div>
+                    <h3>Blog Website</h3>
+                    <p>A personal blog website to share thoughts, ideas, and experiences with the world.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/nunocoracao/blowfish" target="_blank">Link</a>
+                    </div>
+                </div>
+            <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://media-hosting.imagekit.io/b4dae46897654158/dd41ba8c8ba90f450401d1988b8f493e6188cffa.png?Expires=1841804967&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Pye3-H5Tn0E286qcg9a7dVe5xFg5ZdDKuiQyZQAcJJv9Uq10z6chZ8cMoxI5HeN4stIKdFO0hJH2LzdHhOx-qrpfp9VqqarToFglrzsXvvULDyYlrO2Rr8wt3nWpwcdT9yrLJJ3cyQzyl0T6YbCkjAC7klM4d9U-2VcuvdYbz43K2C3GynMPYjPzRNE-zd7YqSb1XRqJoNZr1vpZ3G09fEhIBGK8WtyT5P-arj5T4S3VNM2qKDBM8wtzUrT79GXyt-99N~L-N6txearM2rlvBAA3PhTzuPwzTKdGBSXvVLqE1CNhfQQajVZIpHjm6suYG7SKjr8GmTRl1dWN1TCRWQ__');"></div>
+                    <h3>Expense Tracker App</h3>
+                    <p>A user-friendly application to track and manage your daily expenses effectively.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/princid/Expense-Tracker" target="_blank">Link</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://media-hosting.imagekit.io/df1112c1e7cf4716/Cheapest-Deals-Exploring-the-10-Best-Websites-for-Booking-Hotels-1-1024x574.jpg?Expires=1841805223&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=HRXmdU9HdW6LPF2yy1edeKeYoAu04HZVLNP6K9hCUz1fJXiEuGEK6MF2CRM9t3zqIzLv3fMSuIqpV1vSWaKx15-hYIi~m5ra~U3YDq6alOHdmgVLmZ-NWHoBZiWoB8fPq4viIe9xxIaIjCWxQomuO0bsjsEgB0UWJJGJL8863PTjjd7L~Oi4NT4yBhk~EzRXeN~SAUfdGOiwnpeX54weSqNiV6c2F1GF7~0tD9V2~Ap6a-qUoTmcBbvg04qj3YvtoTaJpqiZlikDa5JOe7TuxXAH~hE33X5KaY1JAgoUX2qW1vJSyA38pa2QxcltJHcNIePOb9SXsL2sH-fgarMoUQ__');"></div>
+                    <h3>Hotel Booking Website</h3>
+                    <p>A user-friendly platform to search, compare, and book hotels at the best prices, ensuring a seamless travel experience.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/sumitmangela/hotel" target="_blank">Link</a>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="section-content">
+            <h2>Education</h2>
+            <div class="education-container">
+                <div class="education-box">
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<i class="fas fa-user-graduate icon-elastic"></i>
+                    <h3>College</h3>
+                    <div class="education-details">
+                        <p><strong>Name:</strong>VSB College of Engineering Technical Campus</p>
+                        <p><strong>Branch:</strong> Computer Science and Engineering</p>
+                        <p><strong>Passing Year:</strong> 2026</p>
+                        <p><strong>Outlook:</strong> GPA: 80%</p>
+                        <p><strong>Description:</strong> Specialized in web technologies and software development. Participated in various coding competitions and hackathons.</p>
+                    </div>
+                </div>
+                <div class="education-box">
+                    <i class="fas fa-school icon-elastic"></i>
+                    <h3>School</h3>
+                    <div class="education-details">
+                        <p><strong>Name:</strong> SCM Higher Secondary School</p>
+                        <p><strong>Branch:</strong> Computer Science</p>
+                        <p><strong>Passing Year:</strong> 2022</p>
+                        <p><strong>Outlook:</strong> Percentage: 78%</p>
+                        <p><strong>Description:</strong> Focused on mathematics and computer science. Active participant in science fairs and extracurricular activities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="section-content">
+            <h2>Get in touch</h2>
+            <div class="contact-box">
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name..." required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your MailID..." required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Enter Subject..." required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="3" placeholder="Type Something..." required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2 class="footer-title">DHAYANANDHAN GK</h2>
+            <div class="footer-links">
+                <a href="#about">About</a>&nbsp;
+                <a href="#skills">Skills</a>&nbsp;
+                <a href="#visionary">Philosophy</a>&nbsp;
+                <a href="#projects">Projects</a>&nbsp;
+                <a href="#education">Education</a>
+                <br>
+            
+            </div>
+            <div class="social-links">
+                <a href="tel:+916379534712" target="_blank"><i class="fas fa-phone"></i></a>&nbsp;
+                <a href="https://www.linkedin.com/in/dhayanandhan-gk-3ba2332a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>&nbsp;
+                <a href="mailto:dhayadharneesh@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>&nbsp;
+                <a href="https://instagram.com/dhaya.beatzz" target="_blank"><i class="fab fa-instagram"></i></a>&nbsp;
+                <a href="https://wa.me/6379534712" target="_blank"><i class="fab fa-whatsapp"></i></a>&nbsp;<br>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
