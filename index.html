@@ -1,394 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhayanandhan GK - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhayanandhan GK - Portfolio</title>
 
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+  <style>
+    /* Typing effect */
+    .typing-effect {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid;
+      animation: blink 0.5s step-end infinite alternate;
+    }
+    @keyframes blink { from { border-color: transparent; } to { border-color: black; } }
+  </style>
 </head>
 <body>
-    <div class="background-animation"></div>
-    
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#visionary">Philosophy</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section id="about" class="section">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h1 class="animated-text">Hii, This is <span class="highlight">DHAYANANDHAN GK</span></h1>
-                    <h2 class="animated-text typing-effect"></h2>
-                    <style>
-                        .typing-effect {
-                            display: inline-block;
-                            overflow: hidden;
-                            white-space: nowrap;
-                            border-right: 2px solid;
-                            animation: blink 0.5s step-end infinite alternate;
-                        }
+<!-- Background Animation -->
+<div class="background-animation"></div>
 
-                        @keyframes blink {
-                            from {
-                                border-color: transparent;
-                            }
-                            to {
-                                border-color: black;
-                            }
-                        }
-                    </style>
-                    <script>
-                        const typingEffectElement = document.querySelector('.typing-effect');
-                        const texts = ["Front End Developer", "UI/UX Enthusiast"];
-                        const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A1"];
-                        let index = 0;
-                        let charIndex = 0;
-                        let isDeleting = false;
+<!-- Header & Nav -->
+<header>
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#visionary">Philosophy</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-                        function typeText() {
-                            const currentText = texts[index];
-                            if (isDeleting) {
-                                charIndex--;
-                            } else {
-                                charIndex++;
-                            }
+<!-- About Section -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-content">
+      <div class="about-text">
+        <h1>Hi, This is <span class="highlight">DHAYANANDHAN GK</span></h1>
+        <h2 class="typing-effect"></h2>
+        <p>A passionate developer with expertise in crafting responsive designs and interactive user experiences. Dedicated to delivering high-quality solutions and continuously learning new technologies.</p>
+        <a href="https://drive.google.com/file/d/1N0o3pEOhgz4DBHy87GekvDNbmD2GWXvW/view?usp=sharing" class="btn">Download CV</a>
+      </div>
+      <div class="about-image">
+        <img src="dhayapic.jpg" alt="Dhayanandhan GK">
+      </div>
+    </div>
+  </div>
+</section>
 
-                            typingEffectElement.textContent = currentText.substring(0, charIndex);
-
-                            if (!isDeleting && charIndex === currentText.length) {
-                                isDeleting = true;
-                                setTimeout(typeText, 1000); // Pause before deleting
-                            } else if (isDeleting && charIndex === 0) {
-                                isDeleting = false;
-                                index = (index + 1) % texts.length;
-                                typingEffectElement.style.color = colors[Math.floor(Math.random() * colors.length)];
-                                setTimeout(typeText, 500); // Pause before typing next text
-                            } else {
-                                setTimeout(typeText, isDeleting ? 50 : 100); // Typing and deleting speed
-                            }
-                        }
-
-                        typeText(); // Start the typing effect
-                    </script>
-                    <p class="animated-text">A passionate developer with expertise in crafting responsive designs and interactive user experiences. Dedicated to delivering high-quality solutions and continuously learning new technologies.</p>
-                    <a href="https://drive.google.com/file/d/1N0o3pEOhgz4DBHy87GekvDNbmD2GWXvW/view?usp=sharing" class="btn animated-text">Download CV</a>
-                       
-                </div>
-                <div class="about-image animated-image">
-                    <img src="dhayapic.jpg" alt="Dhayanandhan GK">
-            </div>
+<!-- Skills Section -->
+<section id="skills" class="section">
+  <div class="section-content">
+    <h2>Skills</h2>
+    <div class="skills-container">
+      <div class="skill-box">
+        <h3>Front End</h3>
+        <div class="skill-items">
+          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML"><p>HTML</p></div>
+          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS"><p>CSS</p></div>
+          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript"><p>JavaScript</p></div>
         </div>
-    </section>
-    <section id="skills" class="section">
-        <div class="section-content">
-            <h2>Skills</h2>
-            <div class="skills-container">
-                <div class="skill-box">
-                    <h3>Front End</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML">
-                            <p>HTML</p>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS">
-                            <p>CSS</p>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript">
-                            <p>JavaScript</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-box">
-                    <h3>Back End</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <img src="java.png" alt="HTML">
-                            <p>Java</p>
-                        </div>
-                        <div class="skill-item">
-                            <img src="python.png" alt="CSS">
-                            <p>Python</p>
-                        </div>
-                        <div class="skill-item">
-                            <img src="sql.png" alt="JavaScript">
-                            <p>SQL</p>
-                        </div>
-                        <div class="skill-item">
-                            <img src="db.png" alt="JavaScript">
-                            <p>MongoDB</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-box">
-                    <h3>Tools</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
-                            <p>GitHub</p>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn-icons-png.flaticon.com/512/906/906324.png" alt="VS Code">
-                            <p>VS Code</p>
-                        </div>
-                        <div class="skill-item">
-                            <img src="fire.png" alt="Firebase">
-                            <p>Firebase</p>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Vercel">
-                            <p>Vercel</p>
-                        </div>
-                    </div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="skill-box">
+        <h3>Back End</h3>
+        <div class="skill-items">
+          <div class="skill-item"><img src="java.png" alt="Java"><p>Java</p></div>
+          <div class="skill-item"><img src="python.png" alt="Python"><p>Python</p></div>
+          <div class="skill-item"><img src="sql.png" alt="SQL"><p>SQL</p></div>
+          <div class="skill-item"><img src="db.png" alt="MongoDB"><p>MongoDB</p></div>
         </div>
-    </section>
-    <section id="internships" class="section">
-        <div class="section-content">
-            <h2>Internships</h2>
-            <div class="projects-container">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('soft.jpg');"></div>
-                    <h3>Software Development Intern</h3>
-                    <p><strong>Company:</strong> Micro IT - May 2025</p>
-                    <p><strong>Description:</strong> Worked on software development projects, including designing, coding, and debugging applications. Gained hands-on experience in software engineering principles and practices.</p>
-                    <p><strong>Place: </strong>Coimbatore</p>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('cyber.jpg');"></div>
-                    <h3>Cyber Security Intern</h3>
-                    <p><strong>Company:</strong> Prodigy Info Tech - Apr 2025</p>
-                    <p><strong>Description:</strong> Gained hands-on experience in identifying vulnerabilities, implementing security measures, and conducting penetration testing. Enhanced knowledge in ethical hacking and network security.</p>
-                    <p><strong>Place:</strong> Coimbatore</p>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('clouds.jpg');"></div>
-                    <h3>Cloud Computing on Google Cloud</h3>
-                    <p><strong>Company:</strong> HEXAIND TECHNOLOGIES AND SERVICES LLP(Innovate Intern) - May 2025</p>
-                    <p><strong>Description:</strong> Cloud computing on Google Cloud means accessing Google’s powerful servers, storage, and services over the internet to build, run, and scale applications without managing physical hardware.</p>
-                    <p><strong>Place:</strong>Coimbatore</p>
-                </div>
-            </div>
+      </div>
+      <div class="skill-box">
+        <h3>Tools</h3>
+        <div class="skill-items">
+          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub"><p>GitHub</p></div>
+          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/906/906324.png" alt="VS Code"><p>VS Code</p></div>
+          <div class="skill-item"><img src="fire.png" alt="Firebase"><p>Firebase</p></div>
+          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Vercel"><p>Vercel</p></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="visionary" class="section">
-        <div class="section-content">
-            <h2>Philosophy</h2>
-            <div class="visionary-container">
-                <div class="visionary-box">
-                    <h3 style="color: #FF5733; font-family: 'Poppins', sans-serif; font-weight: 600; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);">Innovation</h3>
-                    <p>Innovation drives progress, and I strive to bring fresh ideas to every project I undertake. My goal is to push boundaries and create solutions that stand out.</p>
-                    <p>By combining creativity with technical expertise, I aim to deliver impactful digital experiences that leave a lasting impression.</p>
-                </div>
-                <div class="visionary-box">
-                    <h3 style="color: #FF5733; font-family: 'Poppins', sans-serif; font-weight: 600; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">Why Choose Me?</h3>
-                    <p>As a dedicated React Frontend Developer, I specialize in building seamless and engaging user interfaces.</p>
-                    <p>With a strong focus on innovation and attention to detail, I aim to deliver solutions that not only meet but exceed expectations. Let's collaborate to create impactful digital experiences together.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Philosophy Section -->
+<section id="visionary" class="section">
+  <div class="section-content">
+    <h2>Philosophy</h2>
+    <div class="visionary-container">
+      <div class="visionary-box">
+        <h3>Innovation</h3>
+        <p>Innovation drives progress, and I strive to bring fresh ideas to every project I undertake. My goal is to push boundaries and create solutions that stand out.</p>
+        <p>By combining creativity with technical expertise, I aim to deliver impactful digital experiences that leave a lasting impression.</p>
+      </div>
+      <div class="visionary-box">
+        <h3>Why Choose Me?</h3>
+        <p>As a dedicated React Frontend Developer, I specialize in building seamless and engaging user interfaces.</p>
+        <p>With a strong focus on innovation and attention to detail, I aim to deliver solutions that exceed expectations.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="projects" class="section">
-        <div class="section-content">
-            <h2>Projects</h2>
-            <div class="projects-container">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('ecom.jpg');"></div>
-                    <h3>E-commerce Website</h3>
-                    <p>A unique e-commerce platform offering a delightful selection of sweets and snake-themed merchandise, blending creativity with functionality.</p>
-                    <div class="project-links">
-                        <a href="https://dhayaxweb.neocities.org/" target="_blank">Link</a>
-                        
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('Design - Graphic Design Portfolio Website in Black  White  Dark Classic Minimal Style (1).png');"></div>
-                    <h3>Portfolio Website</h3>
-                    <p>A modern and responsive portfolio website to showcase my skills, projects, and achievements effectively.</p>
-                    <div class="project-links">
-                        <a href="#" target="_blank">Link</a>
-                        
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('forticloud.jpeg');"></div>
-                    <h3>FortiCloud GCP Security</h3>
-                    <p>FortiCloud is a secure GCP-based multi-tenancy system ensuring tenant isolation, data protection, and compliance.</p>
-                    <div class="project-links">
-                        <a href="https://eventfinderr.neocities.org/forticloud/forticloud%20(1)" target="_blank">Link</a>
-                        
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('11557.jpg');"></div>
-                    <h3>Event Finder Website</h3>
-                    <p>An intuitive platform to discover and explore events happening around you, with features like filtering by category and location.</p>
-                    <div class="project-links">
-                        <a href="https://eventfinderr.neocities.org/" target="_blank">Link</a>
-                        
-                    </div>
-                    
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('google-weather-app-temperature.avif');"></div>
-                    <h3>Weather App</h3>
-                    <p>A simple and intuitive weather application providing real-time weather updates and forecasts.</p>
-                    <div class="project-links">
-                        <a href="https://dhaya2810.github.io/weather/" target="_blank">Link</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('ec5173a804ea79feadb9ee04ca68de47648b59f8.png');"></div>
-                    <h3>Task Manager App</h3>
-                    <p>An efficient task management tool to organize and prioritize your daily activities.</p>
-                    <div class="project-links">
-                        <a href="https://dhaya2810.github.io/taskmanager/" target="_blank">Link</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('4785b6142c3bd46b89f484286f0e60f7288f1d91.png');"></div>
-                    <h3>Blog Website</h3>
-                    <p>A personal blog website to share thoughts, ideas, and experiences with the world.</p>
-                    <div class="project-links">
-                        <a href="https://dhaya2810.github.io/blog/" target="_blank">Link</a>
-                    </div>
-                </div>
-            <div class="project-card">
-                    <div class="project-image" style="background-image: url('dd41ba8c8ba90f450401d1988b8f493e6188cffa.png');"></div>
-                    <h3>Expense Tracker App</h3>
-                    <p>A user-friendly application to track and manage your daily expenses effectively.</p>
-                    <div class="project-links">
-                        <a href="https://dhaya2810.github.io/expense/" target="_blank">Link</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('Cheapest-Deals-Exploring-the-10-Best-Websites-for-Booking-Hotels-1-1024x574.jpg');"></div>
-                    <h3>Hotel Booking Website</h3>
-                    <p>A user-friendly platform to search, compare, and book hotels at the best prices, ensuring a seamless travel experience.</p>
-                    <div class="project-links">
-                        <a href="https://dhaya2810.github.io/hotel/" target="_blank">Link</a>
-                    </div>
-                </div>
-        </div>
-    </section>
+<!-- Projects Section -->
+<section id="projects" class="section">
+  <div class="section-content">
+    <h2>Projects</h2>
+    <div class="projects-container">
+      <div class="project-card">
+        <div class="project-image" style="background-image: url('ecom.jpg');"></div>
+        <h3>E-commerce Website</h3>
+        <p>A unique e-commerce platform offering a delightful selection of sweets and snake-themed merchandise.</p>
+        <div class="project-links"><a href="https://dhayaxweb.neocities.org/" target="_blank">Link</a></div>
+      </div>
+      <!-- Add more project cards as needed -->
+    </div>
+  </div>
+</section>
 
-    <section id="education" class="section">
-        <div class="section-content">
-            <h2>Education</h2>
-            <div class="education-container">
-                <div class="education-box">
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<i class="fas fa-user-graduate icon-elastic"></i>
-                    <h3>College</h3>
-                    <div class="education-details">
-                        <p><strong>Name:</strong>VSB College of Engineering Technical Campus</p>
-                        <p><strong>Branch:</strong> Computer Science and Engineering</p>
-                        <p><strong>Passing Year:</strong> 2026</p>
-                        <p><strong>Outlook:</strong> GPA: 80%</p>
-                        <p><strong>Description:</strong> Specialized in web technologies and software development. Participated in various coding competitions and hackathons.</p>
-                    </div>
-                </div>
-                <div class="education-box">
-                    <i class="fas fa-school icon-elastic"></i>
-                    <h3>School</h3>
-                    <div class="education-details">
-                        <p><strong>Name:</strong> SCM Higher Secondary School</p>
-                        <p><strong>Branch:</strong> Computer Science</p>
-                        <p><strong>Passing Year:</strong> 2022</p>
-                        <p><strong>Outlook:</strong> Percentage: 78%</p>
-                        <p><strong>Description:</strong> Focused on mathematics and computer science. Active participant in science fairs and extracurricular activities.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Education Section -->
+<section id="education" class="section">
+  <div class="section-content">
+    <h2>Education</h2>
+    <div class="education-container">
+      <div class="education-box">
+        <i class="fas fa-user-graduate"></i>
+        <h3>College</h3>
+        <p><strong>Name:</strong> VSB College of Engineering Technical Campus</p>
+        <p><strong>Branch:</strong> Computer Science and Engineering</p>
+        <p><strong>Passing Year:</strong> 2026</p>
+        <p><strong>GPA:</strong> 80%</p>
+      </div>
+      <div class="education-box">
+        <i class="fas fa-school"></i>
+        <h3>School</h3>
+        <p><strong>Name:</strong> SCM Higher Secondary School</p>
+        <p><strong>Branch:</strong> Computer Science</p>
+        <p><strong>Passing Year:</strong> 2022</p>
+        <p><strong>Percentage:</strong> 78%</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="contact" class="section">
-        <div class="section-content">
-            <h2>Get in touch</h2>
-            <div class="contact-box">
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name..." required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your MailID..." required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" placeholder="Enter Subject..." required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="3" placeholder="Type Something..." required></textarea>
-                </div>
-                <button type="submit" class="btn">Send Message</button>
-            </form>
-        </div>
-        </div>
-    </section>
+<!-- Contact Section -->
+<section id="contact" class="section">
+  <div class="section-content">
+    <h2>Get in touch</h2>
+    <form class="contact-form">
+      <div class="form-group"><label for="name">Name</label><input type="text" id="name" required></div>
+      <div class="form-group"><label for="email">Email</label><input type="email" id="email" required></div>
+      <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" required></div>
+      <div class="form-group"><label for="message">Message</label><textarea id="message" rows="3" required></textarea></div>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <h2 class="footer-title">DHAYANANDHAN GK</h2>
-            <div class="footer-links">
-                <a href="#about">About</a>&nbsp;
-                <a href="#skills">Skills</a>&nbsp;
-                <a href="#visionary">Philosophy</a>&nbsp;
-                <a href="#projects">Projects</a>&nbsp;
-                <a href="#education">Education</a>
-                <br>
-            
-            </div>
-            <div class="social-links">
-                <a href="tel:+916379534712" target="_blank"><i class="fas fa-phone"></i></a>&nbsp;
-                <a href="https://www.linkedin.com/in/dhayanandhan-gk-3ba2332a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>&nbsp;
-                <a href="mailto:dhayadharneesh@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>&nbsp;
-                <a href="https://instagram.com/dhaya.beatzz" target="_blank"><i class="fab fa-instagram"></i></a>&nbsp;
-                <a href="https://wa.me/6379534712" target="_blank"><i class="fab fa-whatsapp"></i></a>&nbsp;<br>
-            </div>
-        </div>
-    </footer>
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <h2>DHAYANANDHAN GK</h2>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#visionary">Philosophy</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+    </div>
+    <div class="social-links">
+      <a href="tel:+916379534712"><i class="fas fa-phone"></i></a>
+      <a href="https://www.linkedin.com/in/dhayanandhan-gk-3ba2332a6" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:dhayadharneesh@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://instagram.com/dhaya.beatzz" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/6379534712"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</footer>
 
-    <script src="script.js"></script>
+<!-- JS -->
+<script>
+  // Typing effect
+  const typingEffectElement = document.querySelector('.typing-effect');
+  const texts = ["Front End Developer", "UI/UX Enthusiast"];
+  const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A1"];
+  let index = 0, charIndex = 0, isDeleting = false;
+
+  function typeText() {
+    const currentText = texts[index];
+    charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
+    typingEffectElement.textContent = currentText.substring(0, charIndex);
+
+    if (!isDeleting && charIndex === currentText.length) {
+      isDeleting = true; setTimeout(typeText, 1000);
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false; index = (index + 1) % texts.length;
+      typingEffectElement.style.color = colors[Math.floor(Math.random() * colors.length)];
+      setTimeout(typeText, 500);
+    } else {
+      setTimeout(typeText, isDeleting ? 50 : 100);
+    }
+  }
+  typeText();
+
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyCeBbJ5OIcnH6Wy2z4_olL69M1AKLeGp08",
+    authDomain: "portfolio-28605.firebaseapp.com",
+    projectId: "portfolio-28605",
+    storageBucket: "portfolio-28605.appspot.com",
+    messagingSenderId: "760049360821",
+    appId: "1:760049360821:web:b908ae57f58e2cce5e03fc"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // Contact Form Submission
+  const contactForm = document.querySelector('.contact-form');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    db.collection("contacts").add({
+      name, email, subject, message,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => {
+      alert("Message sent successfully!");
+      contactForm.reset();
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+      alert("Failed to send message. Please try again.");
+    });
+  });
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
