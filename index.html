@@ -26,6 +26,27 @@
       animation: blink 0.5s step-end infinite alternate;
     }
     @keyframes blink { from { border-color: transparent; } to { border-color: black; } }
+    .contact-form input,
+.contact-form textarea {
+    width: 100%;       /* full width of the container */
+    padding: 15px;     /* increase padding for bigger fields */
+    font-size: 16px;   /* bigger text inside */
+    border-radius: 8px;/* rounded corners */
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 15px; /* spacing between fields */
+}
+
+.contact-form textarea {
+    min-height: 150px;  /* taller textarea */
+    resize: vertical;   /* allow vertical resize */
+}
+
+.contact-form button {
+    padding: 12px 30px; /* bigger button */
+    font-size: 16px;
+}
+
   </style>
 </head>
 <body>
@@ -347,5 +368,6 @@
 
 </body>
 </html>
+
 
 
