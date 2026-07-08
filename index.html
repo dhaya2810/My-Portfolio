@@ -1,376 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dhayanandhan GK - Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhayanandhan GK — Frontend Developer</title>
+<meta name="description" content="Portfolio of Dhayanandhan GK, a frontend developer specializing in responsive design and interactive user experiences.">
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-
-  <style>
-    /* Typing effect */
-    .typing-effect {
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 2px solid;
-      animation: blink 0.5s step-end infinite alternate;
-    }
-    @keyframes blink { from { border-color: transparent; } to { border-color: black; } }
-    .contact-form input,
-.contact-form textarea {
-    width: 100%;       /* full width of the container */
-    padding: 15px;     /* increase padding for bigger fields */
-    font-size: 16px;   /* bigger text inside */
-    border-radius: 8px;/* rounded corners */
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    margin-bottom: 15px; /* spacing between fields */
-}
-
-.contact-form textarea {
-    min-height: 150px;  /* taller textarea */
-    resize: vertical;   /* allow vertical resize */
-}
-
-.contact-form button {
-    padding: 12px 30px; /* bigger button */
-    font-size: 16px;
-}
-
-  </style>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
-<!-- Background Animation -->
-<div class="background-animation"></div>
-
-<!-- Header & Nav -->
+<!-- Header -->
 <header>
-  <nav>
-    <ul>
+  <nav class="wrap">
+    <a href="#about" class="brand">dhaya<span>.dev</span></a>
+    <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#visionary">Philosophy</a></li>
+      <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
   </nav>
 </header>
 
-<!-- About Section -->
+<!-- About / Hero -->
 <section id="about" class="section">
-  <div class="container">
-    <div class="about-content">
-      <div class="about-text">
-        <h1>Hi, This is <span class="highlight">DHAYANANDHAN GK</span></h1>
-        <h2 class="typing-effect"></h2>
-        <p>A passionate developer with expertise in crafting responsive designs and interactive user experiences. Dedicated to delivering high-quality solutions and continuously learning new technologies.</p>
-        <a href="Dhayanandhan_VSBCETC_.pdf" download class="btn">Download CV</a>
+  <div class="wrap hero">
+    <div class="hero-text">
+      <span class="eyebrow">Coimbatore, India</span>
+      <h1>Hi, I'm <span class="highlight">Dhayanandhan&nbsp;GK</span></h1>
+      <p class="role-line"><span id="roleText"></span><span class="cursor">&nbsp;</span></p>
+      <p class="lede">A passionate developer with expertise in crafting responsive designs and interactive user experiences — dedicated to delivering high-quality solutions and continuously learning new technologies.</p>
+      <div class="hero-actions">
+        <a href="Dhayanandhan_VSBCETC_.pdf" download class="btn"><i class="fa-solid fa-download"></i> Download CV</a>
+        <a href="#projects" class="btn ghost">View Projects</a>
       </div>
-      <div class="about-image">
-        <img src="dhayapic.jpg" alt="Dhayanandhan GK">
+    </div>
+    <div class="hero-visual">
+      <div class="editor-card">
+        <div class="editor-titlebar">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="filename">dhayanandhan.js</span>
+        </div>
+        <div class="editor-body">
+<div><span class="ln">1</span><span class="kw">const</span> <span class="key">developer</span> = {</div>
+<div><span class="ln">2</span>&nbsp;&nbsp;name: <span class="str">"Dhayanandhan GK"</span>,</div>
+<div><span class="ln">3</span>&nbsp;&nbsp;role: <span class="str">"Frontend Developer"</span>,</div>
+<div><span class="ln">4</span>&nbsp;&nbsp;stack: [<span class="str">"HTML"</span>, <span class="str">"CSS"</span>, <span class="str">"JS"</span>],</div>
+<div><span class="ln">5</span>&nbsp;&nbsp;<span class="fn">focus</span>: <span class="str">"UI/UX & clean code"</span>,</div>
+<div><span class="ln">6</span>&nbsp;&nbsp;<span class="fn">available</span>: <span class="kw">true</span>,</div>
+<div><span class="ln">7</span>}; <span class="cm">// let's build something</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Skills Section -->
-<section id="skills" class="section">
-  <div class="section-content">
-    <h2>Skills</h2>
-    <div class="skills-container">
-      <div class="skill-box">
-        <h3>Front End</h3>
-        <div class="skill-items">
-          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML"><p>HTML</p></div>
-          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS"><p>CSS</p></div>
-          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript"><p>JavaScript</p></div>
+<!-- Skills -->
+<section id="skills" class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Toolkit</span>
+      <h2>Skills</h2>
+      <p>The languages, frameworks, and tools I reach for when building something.</p>
+    </div>
+    <div class="bento">
+      <div class="bento-card">
+        <h3><i class="fa-solid fa-code"></i> Front End</h3>
+        <div class="chip-row">
+          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="">HTML</span>
+          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="">CSS</span>
+          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="">JavaScript</span>
         </div>
       </div>
-      <div class="skill-box">
-        <h3>Back End</h3>
-        <div class="skill-items">
-          <div class="skill-item"><img src="java.png" alt="Java"><p>Java</p></div>
-          <div class="skill-item"><img src="python.png" alt="Python"><p>Python</p></div>
-          <div class="skill-item"><img src="sql.png" alt="SQL"><p>SQL</p></div>
-          <div class="skill-item"><img src="db.png" alt="MongoDB"><p>MongoDB</p></div>
+      <div class="bento-card">
+        <h3><i class="fa-solid fa-server"></i> Back End</h3>
+        <div class="chip-row">
+          <span class="chip"><img src="java.png" alt="">Java</span>
+          <span class="chip"><img src="python.png" alt="">Python</span>
+          <span class="chip"><img src="sql.png" alt="">SQL</span>
+          <span class="chip"><img src="db.png" alt="">MongoDB</span>
         </div>
       </div>
-      <div class="skill-box">
-        <h3>Tools</h3>
-        <div class="skill-items">
-          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub"><p>GitHub</p></div>
-          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/906/906324.png" alt="VS Code"><p>VS Code</p></div>
-          <div class="skill-item"><img src="fire.png" alt="Firebase"><p>Firebase</p></div>
-          <div class="skill-item"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Vercel"><p>Vercel</p></div>
+      <div class="bento-card" style="grid-column: span 4;">
+        <h3><i class="fa-solid fa-toolbox"></i> Tools</h3>
+        <div class="chip-row">
+          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="">GitHub</span>
+          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/906/906324.png" alt="">VS Code</span>
+          <span class="chip"><img src="fire.png" alt="">Firebase</span>
+          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="">Vercel</span>
         </div>
       </div>
     </div>
   </div>
 </section>
-<section id="internships" class="section">
-        <div class="section-content">
-            <h2>Internships</h2>
-            <div class="projects-container">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('soft.jpg');"></div>
-                    <h3>Software Development Intern</h3>
-                    <p><strong>Company:</strong> Micro IT - May 2025</p>
-                    <p><strong>Description:</strong> Worked on software development projects, including designing, coding, and debugging applications. Gained hands-on experience in software engineering principles and practices.</p>
-                    <p><strong>Place: </strong>Coimbatore</p>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('cyber.jpg');"></div>
-                    <h3>Cyber Security Intern</h3>
-                    <p><strong>Company:</strong> Prodigy Info Tech - Apr 2025</p>
-                    <p><strong>Description:</strong> Gained hands-on experience in identifying vulnerabilities, implementing security measures, and conducting penetration testing. Enhanced knowledge in ethical hacking and network security.</p>
-                    <p><strong>Place:</strong> Coimbatore</p>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('clouds.jpg');"></div>
-                    <h3>Cloud Computing on Google Cloud</h3>
-                    <p><strong>Company:</strong> HEXAIND TECHNOLOGIES AND SERVICES LLP(Innovate Intern) - May 2025</p>
-                    <p><strong>Description:</strong> Cloud computing on Google Cloud means accessing Google’s powerful servers, storage, and services over the internet to build, run, and scale applications without managing physical hardware.</p>
-                    <p><strong>Place:</strong>Coimbatore</p>
-                </div>
-              
-            </div>
-        </div>
-    </section>
-<!-- Philosophy Section -->
-<section id="visionary" class="section">
-  <div class="section-content">
-    <h2>Philosophy</h2>
-    <div class="visionary-container">
-      <div class="visionary-box">
+
+<!-- Experience: Internships -->
+<section id="experience" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Experience</span>
+      <h2>Internships</h2>
+      <p>Hands-on roles where I applied and grew my skills.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="meta">MAY 2025 · COIMBATORE</div>
+        <h3>Software Development Intern</h3>
+        <div class="org">Micro IT</div>
+        <p class="desc">Worked on software development projects, including designing, coding, and debugging applications. Gained hands-on experience in software engineering principles and practices.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="meta">APR 2025 · COIMBATORE</div>
+        <h3>Cyber Security Intern</h3>
+        <div class="org">Prodigy Info Tech</div>
+        <p class="desc">Gained hands-on experience in identifying vulnerabilities, implementing security measures, and conducting penetration testing. Enhanced knowledge in ethical hacking and network security.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="meta">MAY 2025 · COIMBATORE</div>
+        <h3>Cloud Computing on Google Cloud</h3>
+        <div class="org">Hexaind Technologies and Services LLP (Innovate Intern)</div>
+        <p class="desc">Worked with Google Cloud to build, run, and scale applications without managing physical hardware — accessing powerful servers, storage, and services over the internet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section id="visionary" class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Approach</span>
+      <h2>Philosophy</h2>
+    </div>
+    <div class="philosophy-grid">
+      <div class="philosophy-card">
         <h3>Innovation</h3>
         <p>Innovation drives progress, and I strive to bring fresh ideas to every project I undertake. My goal is to push boundaries and create solutions that stand out.</p>
         <p>By combining creativity with technical expertise, I aim to deliver impactful digital experiences that leave a lasting impression.</p>
       </div>
-      <div class="visionary-box">
-        <h3>Why Choose Me?</h3>
-        <p>As a dedicated React Frontend Developer, I specialize in building seamless and engaging user interfaces.</p>
+      <div class="philosophy-card">
+        <h3>Why work with me</h3>
+        <p>As a dedicated frontend developer, I specialize in building seamless and engaging user interfaces.</p>
         <p>With a strong focus on innovation and attention to detail, I aim to deliver solutions that exceed expectations.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Projects Section -->
+<!-- Projects -->
 <section id="projects" class="section">
-  <div class="section-content">
-    <h2>Projects</h2>
-    <div class="projects-container">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Selected Work</span>
+      <h2>Projects</h2>
+      <p>A mix of full builds and experiments — from e-commerce to security tooling.</p>
+    </div>
+    <div class="projects-grid">
+
       <div class="project-card">
-        <div class="project-image" style="background-image: url('ecom.jpg');"></div>
-        <h3>E-commerce Website</h3>
-        <p>A unique e-commerce platform offering a delightful selection of sweets and snake-themed merchandise.</p>
-        <div class="project-links"><a href="https://dhayaxweb.neocities.org/" target="_blank">Link</a></div>
+        <div class="project-thumb" style="background-image:url('ecom.jpg');"></div>
+        <div class="project-body">
+          <h3>E-commerce Website</h3>
+          <p>A unique e-commerce platform offering a delightful selection of sweets and snake-themed merchandise.</p>
+          <a class="project-link" href="https://dhayaxweb.neocities.org/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
       </div>
-      <!-- Add more project cards as needed -->
+
       <div class="project-card">
-                    <div class="project-image" style="background-image: url('forticloud.jpeg');"></div>
-                    <h3>FortiCloud GCP Security</h3>
-                    <p>FortiCloud is a secure GCP-based multi-tenancy system ensuring tenant isolation, data protection, and compliance.</p>
-                    <div class="project-links">
-                        <a href="https://eventfinderr.neocities.org/forticloud/forticloud%20(1)" target="_blank">Link</a>
-                        
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('11557.jpg');"></div>
-                    <h3>Event Finder Website</h3>
-                    <p>An intuitive platform to discover and explore events happening around you, with features like filtering by category and location.</p>
-                    <div class="project-links">
-                        <a href="https://event-finderr.netlify.app/" target="_blank">Link</a>
-                        
-                    </div>
-                    
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('google-weather-app-temperature.avif');"></div>
-                    <h3>Weather App</h3>
-                    <p>A simple and intuitive weather application providing real-time weather updates and forecasts.</p>
-                    <div class="project-links">
-                        <a href="https://dhaya2810.github.io/weather/" target="_blank">Link</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('ec5173a804ea79feadb9ee04ca68de47648b59f8.png');"></div>
-                    <h3>Task Manager App</h3>
-                    <p>An efficient task management tool to organize and prioritize your daily activities.</p>
-                    <div class="project-links">
-                        <a href="https://dhaya2810.github.io/taskmanager/" target="_blank">Link</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('4785b6142c3bd46b89f484286f0e60f7288f1d91.png');"></div>
-                    <h3>Blog Website</h3>
-                    <p>A personal blog website to share thoughts, ideas, and experiences with the world.</p>
-                    <div class="project-links">
-                        <a href="https://dhaya2810.github.io/blog/" target="_blank">Link</a>
-                    </div>
-                </div>
-            <div class="project-card">
-                    <div class="project-image" style="background-image: url('dd41ba8c8ba90f450401d1988b8f493e6188cffa.png');"></div>
-                    <h3>Expense Tracker App</h3>
-                    <p>A user-friendly application to track and manage your daily expenses effectively.</p>
-                    <div class="project-links">
-                        <a href="https://dhaya2810.github.io/expense/" target="_blank">Link</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('Cheapest-Deals-Exploring-the-10-Best-Websites-for-Booking-Hotels-1-1024x574.jpg');"></div>
-                    <h3>Hotel Booking Website</h3>
-                    <p>A user-friendly platform to search, compare, and book hotels at the best prices, ensuring a seamless travel experience.</p>
-                    <div class="project-links">
-                        <a href="https://dhaya2810.github.io/hotel/" target="_blank">Link</a>
-                    </div>
-                </div>
+        <div class="project-thumb" style="background-image:url('forticloud.jpeg');"></div>
+        <div class="project-body">
+          <h3>FortiCloud GCP Security</h3>
+          <p>A secure GCP-based multi-tenancy system ensuring tenant isolation, data protection, and compliance.</p>
+          <a class="project-link" href="https://eventfinderr.neocities.org/forticloud/forticloud%20(1)" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb" style="background-image:url('11557.jpg');"></div>
+        <div class="project-body">
+          <h3>Event Finder Website</h3>
+          <p>An intuitive platform to discover and explore events happening around you, with filtering by category and location.</p>
+          <a class="project-link" href="https://event-finderr.netlify.app/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb" style="background-image:url('google-weather-app-temperature.avif');"></div>
+        <div class="project-body">
+          <h3>Weather App</h3>
+          <p>A simple and intuitive weather application providing real-time weather updates and forecasts.</p>
+          <a class="project-link" href="https://dhaya2810.github.io/weather/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb" style="background-image:url('ec5173a804ea79feadb9ee04ca68de47648b59f8.png');"></div>
+        <div class="project-body">
+          <h3>Task Manager App</h3>
+          <p>An efficient task management tool to organize and prioritize your daily activities.</p>
+          <a class="project-link" href="https://dhaya2810.github.io/taskmanager/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb" style="background-image:url('4785b6142c3bd46b89f484286f0e60f7288f1d91.png');"></div>
+        <div class="project-body">
+          <h3>Blog Website</h3>
+          <p>A personal blog website to share thoughts, ideas, and experiences with the world.</p>
+          <a class="project-link" href="https://dhaya2810.github.io/blog/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb" style="background-image:url('dd41ba8c8ba90f450401d1988b8f493e6188cffa.png');"></div>
+        <div class="project-body">
+          <h3>Expense Tracker App</h3>
+          <p>A user-friendly application to track and manage your daily expenses effectively.</p>
+          <a class="project-link" href="https://dhaya2810.github.io/expense/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-thumb" style="background-image:url('Cheapest-Deals-Exploring-the-10-Best-Websites-for-Booking-Hotels-1-1024x574.jpg');"></div>
+        <div class="project-body">
+          <h3>Hotel Booking Website</h3>
+          <p>A user-friendly platform to search, compare, and book hotels at the best prices for a seamless travel experience.</p>
+          <a class="project-link" href="https://dhaya2810.github.io/hotel/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- Education Section -->
-<section id="education" class="section">
-  <div class="section-content">
-    <h2>Education</h2>
-    <div class="education-container">
-      <div class="education-box">
-        <i class="fas fa-user-graduate"></i>
-        <h3>College</h3>
-        <p><strong>Name:</strong> VSB College of Engineering Technical Campus</p>
-        <p><strong>Branch:</strong> Computer Science and Engineering</p>
-        <p><strong>Passing Year:</strong> 2026</p>
-        <p><strong>GPA:</strong> 80%</p>
+<!-- Education -->
+<section id="education" class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Background</span>
+      <h2>Education</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="meta">GRADUATING 2026 · GPA 80%</div>
+        <h3>B.E. Computer Science and Engineering</h3>
+        <div class="org">VSB College of Engineering Technical Campus</div>
       </div>
-      <div class="education-box">
-        <i class="fas fa-school"></i>
-        <h3>School</h3>
-        <p><strong>Name:</strong> SCM Higher Secondary School</p>
-        <p><strong>Branch:</strong> Computer Science</p>
-        <p><strong>Passing Year:</strong> 2022</p>
-        <p><strong>Percentage:</strong> 78%</p>
+      <div class="timeline-item">
+        <div class="meta">COMPLETED 2022 · 78%</div>
+        <h3>Higher Secondary, Computer Science</h3>
+        <div class="org">SCM Higher Secondary School</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Contact Section -->
+<!-- Contact -->
 <section id="contact" class="section">
-  <div class="section-content">
-    <h2>Get in touch</h2>
-    <form class="contact-form">
-      <div class="form-group"><label for="name">Name</label><input type="text" id="name" required></div>
-      <div class="form-group"><label for="email">Email</label><input type="email" id="email" required></div>
-      <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" required></div>
-      <div class="form-group"><label for="message">Message</label><textarea id="message" rows="3" required></textarea></div>
+  <div class="wrap contact-layout">
+    <div class="contact-info">
+      <span class="eyebrow">Get in touch</span>
+      <h3>Let's build something together</h3>
+      <p>Have a project in mind or just want to say hi? My inbox is open.</p>
+      <ul class="contact-list">
+        <li><a href="tel:+916379534712"><i class="fa-solid fa-phone"></i> +91 63795 34712</a></li>
+        <li><a href="mailto:dhayadharneesh@gmail.com"><i class="fa-solid fa-envelope"></i> dhayadharneesh@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/dhayanandhan-gk-3ba2332a6" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+        <li><a href="https://wa.me/6379534712" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      </ul>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <div class="form-row">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" required>
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" required></textarea>
+      </div>
       <button type="submit" class="btn">Send Message</button>
+      <p class="form-status" id="formStatus"></p>
     </form>
   </div>
 </section>
 
 <!-- Footer -->
 <footer>
-  <div class="container">
-    <h2>DHAYANANDHAN GK</h2>
-    <div class="footer-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#visionary">Philosophy</a>
-      <a href="#projects">Projects</a>
-      <a href="#education">Education</a>
+  <div class="wrap">
+    <div class="footer-top">
+      <span class="brand">dhaya<span>.dev</span></span>
+      <div class="footer-social">
+        <a href="tel:+916379534712" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+        <a href="https://www.linkedin.com/in/dhayanandhan-gk-3ba2332a6" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="mailto:dhayadharneesh@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://instagram.com/dhaya.beatzz" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/6379534712" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
     </div>
-    <div class="social-links">
-      <a href="tel:+916379534712"><i class="fas fa-phone"></i></a>
-      <a href="https://www.linkedin.com/in/dhayanandhan-gk-3ba2332a6" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="mailto:dhayadharneesh@gmail.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://instagram.com/dhaya.beatzz" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://wa.me/6379534712"><i class="fab fa-whatsapp"></i></a>
-    </div>
+    <p class="footer-bottom">© <span id="year"></span> Dhayanandhan GK. Built with HTML, CSS & JavaScript.</p>
   </div>
 </footer>
 
-<!-- JS -->
-<script>
-  // Typing effect
-  const typingEffectElement = document.querySelector('.typing-effect');
-  const texts = ["Front End Developer", "UI/UX Enthusiast"];
-  const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A1"];
-  let index = 0, charIndex = 0, isDeleting = false;
-
-  function typeText() {
-    const currentText = texts[index];
-    charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
-    typingEffectElement.textContent = currentText.substring(0, charIndex);
-
-    if (!isDeleting && charIndex === currentText.length) {
-      isDeleting = true; setTimeout(typeText, 1000);
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false; index = (index + 1) % texts.length;
-      typingEffectElement.style.color = colors[Math.floor(Math.random() * colors.length)];
-      setTimeout(typeText, 500);
-    } else {
-      setTimeout(typeText, isDeleting ? 50 : 100);
-    }
-  }
-  typeText();
-
-  // Firebase Config
-  const firebaseConfig = {
-    apiKey: "AIzaSyCeBbJ5OIcnH6Wy2z4_olL69M1AKLeGp08",
-    authDomain: "portfolio-28605.firebaseapp.com",
-    projectId: "portfolio-28605",
-    storageBucket: "portfolio-28605.appspot.com",
-    messagingSenderId: "760049360821",
-    appId: "1:760049360821:web:b908ae57f58e2cce5e03fc"
-  };
-
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  // Contact Form Submission
-  const contactForm = document.querySelector('.contact-form');
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    db.collection("contacts").add({
-      name, email, subject, message,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then(() => {
-      alert("Message sent successfully!");
-      contactForm.reset();
-    })
-    .catch((error) => {
-      console.error("Error writing document: ", error);
-      alert("Failed to send message. Please try again.");
-    });
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
