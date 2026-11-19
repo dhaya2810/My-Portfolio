@@ -1,333 +1,1772 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dhayanandhan GK — Frontend Developer</title>
-<meta name="description" content="Portfolio of Dhayanandhan GK, a frontend developer specializing in responsive design and interactive user experiences.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhayanandhan GK | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Ops+One&family=Bungee&family=Cinzel+Decorative:wght@700&family=Creepster&family=Faster+One&family=Monoton&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&family=Orbitron:wght@800&family=Pacifico&family=Permanent+Marker&family=Press+Start+2P&family=Righteous&family=Rubik+Glitch&family=Rye&family=Syne:wght@800&family=VT323&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Mobile Menu Transitions */
+    #mobile-menu {
+      transition: opacity 0.5s ease-in-out, pointer-events 0.5s ease-in-out;
+    }
+    #mobile-menu.open {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+    .hamburger-line {
+      transition: all 0.3s ease-in-out;
+    }
+    .hamburger-open .line-1 { transform: rotate(45deg) translate(6px, 6px); }
+    .hamburger-open .line-2 { opacity: 0; }
+    .hamburger-open .line-3 { transform: rotate(-45deg) translate(6px, -6px); }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="styles.css">
+    body { font-family: 'Montserrat', sans-serif; background-color: #F8F9FA; color: #111827; overflow-x: hidden; margin: 0; }
+    
+    .nav-link { font-size: 0.85rem; font-weight: 700; color: #6B7280; letter-spacing: 0.1em; transition: color 0.3s; }
+    .nav-link:hover { color: #111827; }
+    .subtitle { font-size: 0.85rem; font-weight: 800; letter-spacing: 0.15em; color: #B91C1C; text-transform: uppercase; }
+    
+    .title-name {
+      font-size: 5rem;
+      font-weight: 900;
+      font-style: italic;
+      line-height: 0.9;
+      color: #0F172A;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      text-shadow: 4px 4px 0px #B91C1C;
+    }
+    @media (max-width: 768px) { .title-name { font-size: 2.5rem; } }
 
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    /* Compact Hero Name - Ensures it never covers the centered photo */
+    #heroName {
+      font-size: clamp(1.4rem, 2.5vw, 2.5rem) !important;
+      line-height: 1.15 !important;
+      text-shadow: 3px 3px 0px #B91C1C !important;
+      letter-spacing: -0.01em;
+      transition: text-shadow 0.15s ease;
+    }
+    #heroName:hover {
+      text-shadow: 4px 4px 0px #A31621, 0 0 15px rgba(185, 28, 28, 0.4) !important;
+    }
+
+    /* Project Filter Buttons */
+    .proj-filter-btn {
+      background-color: rgba(15, 23, 42, 0.85);
+      color: #9CA3AF;
+      border: 1px solid rgba(75, 85, 99, 0.4);
+      cursor: pointer;
+    }
+    .proj-filter-btn:hover {
+      color: #FFFFFF;
+      border-color: #B91C1C;
+      background-color: rgba(185, 28, 28, 0.2);
+      transform: translateY(-2px);
+    }
+    .proj-filter-btn.active-filter {
+      background-color: #B91C1C !important;
+      color: #FFFFFF !important;
+      border-color: #EF4444 !important;
+      box-shadow: 0 4px 20px rgba(185, 28, 28, 0.5);
+      transform: translateY(-2px);
+    }
+    .project-item-card {
+      transition: all 0.35s ease;
+    }
+
+    /* Custom Spider-Man Hand Pointer Cursor */
+    *, html, body, a, button, input, textarea, select, [role="button"], label {
+      cursor: url('./assets/spidey-cursor.png') 16 0, auto !important;
+    }
+    a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
+      cursor: url('./assets/spidey-cursor.png') 16 0, pointer !important;
+    }
+    body:active *, body:active {
+      cursor: url('./assets/spidey-cursor.png') 16 2, pointer !important;
+    }
+
+    /* Swinging Pendulum */
+    @keyframes float-pill {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+    .pill-animate {
+      animation: float-pill 3s ease-in-out infinite;
+      display: inline-block;
+    }
+    @keyframes swing {
+      0% { transform: rotate(5deg); }
+      50% { transform: rotate(-5deg); }
+      100% { transform: rotate(5deg); }
+    }
+    .pendulum {
+      animation: swing 6s ease-in-out infinite;
+      transform-origin: top center;
+    }
+
+    .btn-red { background-color: #A31621; color: white; font-weight: 800; font-size: 0.85rem; padding: 1rem 1.5rem; border-radius: 0.5rem; transition: transform 0.2s, background-color 0.2s; }
+    .btn-red:hover { transform: scale(1.05); background-color: #8A121A; }
+    .btn-dark { background-color: #0F172A; color: white; font-weight: 800; font-size: 0.85rem; padding: 1rem 1.5rem; border-radius: 0.5rem; transition: transform 0.2s; display: flex; align-items: center; gap: 0.5rem; }
+    .btn-dark:hover { transform: scale(1.05); }
+
+    /* Hero Section Fixed Alignment */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 20;
+      pointer-events: none;
+    }
+    .hero-content > * { pointer-events: auto; }
+    
+    .hero-image-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 10;
+    }
+    /* Centered Spiderman (Base) */
+    .hero-spiderman {
+      position: absolute;
+      bottom: -5vh;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 105vh;
+      object-fit: contain;
+      z-index: 12;
+      pointer-events: auto;
+      mix-blend-mode: multiply;
+    }
+    /* Dynamic Circular Blended Person Image (Hover Reveal) */
+    .hero-person {
+      position: absolute;
+      bottom: -5vh;
+      left: 50%;
+      height: 105vh;
+      object-fit: contain;
+      z-index: 13;
+      pointer-events: none;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-image: radial-gradient(circle 0px at 50% 50%, black 100%, transparent 100%);
+      mask-image: radial-gradient(circle 0px at 50% 50%, black 100%, transparent 100%);
+    }
+
+    /* Web decorations */
+    .web-tl { 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 400px; 
+      height: 400px; 
+      object-fit: contain; 
+      opacity: 0.5; 
+      mix-blend-mode: multiply; 
+      transform: translate(-25%, -25%); 
+      z-index: 1; 
+      pointer-events: none; 
+    }
+    .web-br { 
+      position: absolute; 
+      bottom: 0; 
+      right: 0; 
+      width: 500px; 
+      height: 500px; 
+      object-fit: contain; 
+      opacity: 0.5; 
+      mix-blend-mode: multiply; 
+      transform: translate(25%, 25%); 
+      z-index: 1; 
+      pointer-events: none; 
+    }
+    
+    .web-bg-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; opacity: 0.1; z-index: 0; pointer-events: none; }
+
+    /* Marquee */
+    .marquee-container { position: relative; height: 140px; overflow: hidden; background: #F8F9FA; z-index: 20; }
+    .marquee-strip { position: absolute; top: 50%; left: -10%; width: 120%; display: flex; align-items: center; overflow: hidden; white-space: nowrap; padding: 1rem 0; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    .marquee-content { display: flex; animation: scroll 45s linear infinite; }
+    .marquee-content.reverse { animation: scroll-reverse 45s linear infinite; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes scroll-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+    .marquee-item { display: flex; align-items: center; gap: 2rem; padding: 0 2rem; font-weight: 800; font-size: 1.5rem; font-style: italic; letter-spacing: 0.1em; }
+    .strip-dark { background-color: #111827; color: #B91C1C; transform: translateY(-50%) rotate(3deg); z-index: 1; }
+    .strip-red { background-color: #B91C1C; color: white; transform: translateY(-50%) rotate(-3deg); z-index: 2; }
+
+    .skill-card { transition: all 0.3s ease; }
+    .skill-card:hover { background-color: #A31621; color: white; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(163, 22, 33, 0.4); }
+    .skill-card:hover .skill-dot { background-color: white; }
+    .skill-card:hover .skill-cat { color: rgba(255,255,255,0.8); }
+    .skill-card:hover .skill-badge { background-color: #0F172A; color: white; border-color: #0F172A; }
+
+    .project-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .project-card:hover .project-title { color: #A31621; }
+
+    .input-field { transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+    .input-field:focus { outline: none; border-color: #A31621; box-shadow: 0 0 0 3px rgba(163, 22, 33, 0.1); }
+    
+    @keyframes spin-only {
+      from { rotate: 0deg; }
+      to { rotate: 360deg; }
+    }
+    @keyframes pulse-only {
+      0% { scale: 1; }
+      50% { scale: 1.3; }
+      100% { scale: 1; }
+    }
+    .web-animated {
+      animation: spin-only 25s linear infinite, pulse-only 4s ease-in-out infinite;
+      transform-origin: center center;
+    }
+    .web-spin-only {
+      animation: spin-only 25s linear infinite;
+      transform-origin: center center;
+    }
+  </style>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-<!-- Header -->
-<header>
-  <nav class="wrap">
-    <a href="#about" class="brand">dhaya<span>.dev</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div style="display:flex; align-items:center; gap:10px;">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-        <i class="fa-solid fa-moon" id="themeIcon"></i>
-      </button>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+  <!-- Interactive Spider-Web Background Canvas (Tracks Mouse) -->
+  <canvas id="spidey-web-canvas" class="fixed inset-0 pointer-events-none z-[15] w-full h-full"></canvas>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const heroSection = document.getElementById('home');
+      const personImage = document.getElementById('personImage');
+
+      function handleMouseMove(e) {
+        if (window.innerWidth < 768) return;
+        if (personImage) {
+          const rect = personImage.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const maskString = `radial-gradient(circle 200px at ${x}px ${y}px, black 40%, transparent 100%)`;
+          personImage.style.webkitMaskImage = maskString;
+          personImage.style.maskImage = maskString;
+        }
+      }
+
+      heroSection.addEventListener('mousemove', handleMouseMove);
+      heroSection.addEventListener('mouseleave', () => {
+        const reset = `radial-gradient(circle 0px at 50% 50%, black 100%, transparent 100%)`;
+        personImage.style.webkitMaskImage = reset;
+        personImage.style.maskImage = reset;
+      });
+    });
+
+    // Mobile Menu Logic
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const btn = document.getElementById('hamburger-btn');
+      menu.classList.toggle('open');
+      btn.classList.toggle('hamburger-open');
+      if (menu.classList.contains('open')) {
+        btn.classList.add('text-white');
+        btn.classList.remove('text-gray-900');
+      } else if (!window.scrollY > 50) {
+        btn.classList.add('text-gray-900');
+        btn.classList.remove('text-white');
+      }
+    }
+  </script>
+
+  <!-- NAV -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full px-6 md:px-8 py-6 flex justify-between items-center z-50 transition-all duration-300 bg-transparent">
+    <a href="#home" id="nav-logo" onclick="if(document.getElementById('mobile-menu').classList.contains('open')) toggleMobileMenu();" class="text-2xl font-black italic tracking-tighter cursor-pointer ml-2 md:ml-4 transition-colors text-gray-900 no-underline select-none">
+      <span class="text-red-700">D</span>HAYA.
+    </a>
+    
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex gap-8 mr-4">
+      <a href="#about" class="nav-link uppercase">About</a>
+      <a href="#skills" class="nav-link uppercase">Skills</a>
+      <a href="#experience" class="nav-link uppercase">Experience</a>
+      <a href="#education" class="nav-link uppercase">Education</a>
+      <a href="#certifications" class="nav-link uppercase">Certifications</a>
+      <a href="#apps" class="nav-link uppercase">Projects</a>
+      <a href="#contact" class="nav-link uppercase">Contact</a>
     </div>
+
+    <!-- Mobile Menu Button -->
+    <button 
+      id="hamburger-btn"
+      class="md:hidden flex flex-col justify-center items-center w-8 h-8 z-[60] relative text-gray-900"
+      onclick="toggleMobileMenu()"
+      aria-label="Toggle Navigation"
+    >
+      <span class="hamburger-line line-1 w-6 h-0.5 bg-current mb-1.5"></span>
+      <span class="hamburger-line line-2 w-6 h-0.5 bg-current mb-1.5"></span>
+      <span class="hamburger-line line-3 w-6 h-0.5 bg-current"></span>
+    </button>
   </nav>
-</header>
 
-<!-- About / Hero -->
-<section id="about" class="section">
-  <div class="wrap hero">
-    <div class="hero-text">
-      <span class="eyebrow">Coimbatore, India</span>
-      <h1>Hi, I'm <span class="highlight">Dhayanandhan&nbsp;GK</span></h1>
-      <p class="role-line"><span id="roleText"></span><span class="cursor">&nbsp;</span></p>
-      <p class="lede">A passionate developer with expertise in crafting responsive designs and interactive user experiences — dedicated to delivering high-quality solutions and continuously learning new technologies.</p>
-      <div class="hero-actions">
-        <a href="Dhayanandhan_VSBCETC_.pdf" download class="btn"><i class="fa-solid fa-download"></i> Download CV</a>
-        <a href="#projects" class="btn ghost">View Projects</a>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="editor-card">
-        <div class="editor-titlebar">
-          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="filename">dhayanandhan.js</span>
-        </div>
-        <div class="editor-body">
-<div><span class="ln">1</span><span class="kw">const</span> <span class="key">developer</span> = {</div>
-<div><span class="ln">2</span>&nbsp;&nbsp;name: <span class="str">"Dhayanandhan GK"</span>,</div>
-<div><span class="ln">3</span>&nbsp;&nbsp;role: <span class="str">"Frontend Developer"</span>,</div>
-<div><span class="ln">4</span>&nbsp;&nbsp;stack: [<span class="str">"HTML"</span>, <span class="str">"CSS"</span>, <span class="str">"JS"</span>],</div>
-<div><span class="ln">5</span>&nbsp;&nbsp;<span class="fn">focus</span>: <span class="str">"UI/UX & clean code"</span>,</div>
-<div><span class="ln">6</span>&nbsp;&nbsp;<span class="fn">available</span>: <span class="kw">true</span>,</div>
-<div><span class="ln">7</span>}; <span class="cm">// let's build something</span></div>
-        </div>
-      </div>
-    </div>
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-[55] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none md:hidden">
+    <a href="#home" onclick="toggleMobileMenu()" class="text-2xl font-black italic tracking-widest uppercase text-white hover:text-red-500 transition-colors">Home</a>
+    <a href="#about" onclick="toggleMobileMenu()" class="text-2xl font-black italic tracking-widest uppercase text-white hover:text-red-500 transition-colors">About</a>
+    <a href="#skills" onclick="toggleMobileMenu()" class="text-2xl font-black italic tracking-widest uppercase text-white hover:text-red-500 transition-colors">Skills</a>
+    <a href="#experience" onclick="toggleMobileMenu()" class="text-2xl font-black italic tracking-widest uppercase text-white hover:text-red-500 transition-colors">Experience</a>
+    <a href="#education" onclick="toggleMobileMenu()" class="text-2xl font-black italic tracking-widest uppercase text-white hover:text-red-500 transition-colors">Education</a>
+    <a href="#certifications" onclick="toggleMobileMenu()" class="text-2xl font-black italic tracking-widest uppercase text-white hover:text-red-500 transition-colors">Certifications</a>
+    <a href="#apps" onclick="toggleMobileMenu()" class="text-2xl font-black italic tracking-widest uppercase text-white hover:text-red-500 transition-colors">Projects</a>
+    <a href="#contact" onclick="toggleMobileMenu()" class="text-2xl font-black italic tracking-widest uppercase text-white hover:text-red-500 transition-colors">Contact</a>
   </div>
-</section>
 
-<!-- Skills -->
-<section id="skills" class="section alt">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Toolkit</span>
-      <h2>Skills</h2>
-      <p>The languages, frameworks, and tools I reach for when building something.</p>
+  <!-- HERO SECTION -->
+  <section id="home" class="hero-section">
+    <!-- Parallax Webs with CSS animation -->
+    <div class="absolute top-0 left-0 w-[280px] h-[280px] -translate-x-[15%] -translate-y-[15%] z-[1] pointer-events-none hidden md:block">
+      <img src="./assets/web1.png" class="web-animated object-contain opacity-50 mix-blend-multiply w-full h-full" alt="Web">
     </div>
-    <div class="bento">
-      <div class="bento-card">
-        <h3><i class="fa-solid fa-code"></i> Front End</h3>
-        <div class="chip-row">
-          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="">HTML</span>
-          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="">CSS</span>
-          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="">JavaScript</span>
-        </div>
-      </div>
-      <div class="bento-card">
-        <h3><i class="fa-solid fa-server"></i> Back End</h3>
-        <div class="chip-row">
-          <span class="chip"><img src="java.png" alt="">Java</span>
-          <span class="chip"><img src="python.png" alt="">Python</span>
-          <span class="chip"><img src="sql.png" alt="">SQL</span>
-          <span class="chip"><img src="db.png" alt="">MongoDB</span>
-        </div>
-      </div>
-      <div class="bento-card" style="grid-column: span 4;">
-        <h3><i class="fa-solid fa-toolbox"></i> Tools</h3>
-        <div class="chip-row">
-          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="">GitHub</span>
-          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/906/906324.png" alt="">VS Code</span>
-          <span class="chip"><img src="fire.png" alt="">Firebase</span>
-          <span class="chip"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="">Vercel</span>
-        </div>
-      </div>
+    <div class="absolute bottom-0 right-0 w-[320px] h-[320px] translate-x-[15%] translate-y-[15%] z-[1] pointer-events-none hidden md:block">
+      <img src="./assets/web1.png" class="web-animated object-contain opacity-50 mix-blend-multiply w-full h-full" alt="Web">
     </div>
-  </div>
-</section>
 
-<!-- Experience: Internships -->
-<section id="experience" class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Experience</span>
-      <h2>Internships</h2>
-      <p>Hands-on roles where I applied and grew my skills.</p>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="meta">MAY 2025 · COIMBATORE</div>
-        <h3>Software Development Intern</h3>
-        <div class="org">Micro IT</div>
-        <p class="desc">Worked on software development projects, including designing, coding, and debugging applications. Gained hands-on experience in software engineering principles and practices.</p>
+    <!-- TEXT CONTENT ON LEFT -->
+    <div class="hero-content absolute top-[100px] md:relative md:top-auto z-20 px-6 md:pl-24 w-full lg:w-1/2 flex flex-col gap-4 md:gap-6 pt-0 md:pt-20 mt-0 md:self-center pointer-events-none">
+      <h2 class="subtitle hero-text text-xs md:text-[0.85rem] font-extrabold tracking-[0.15em] text-[#B91C1C] uppercase">YOUR FRIENDLY NEIGHBORHOOD DEVELOPER</h2>
+      <div class="overflow-visible pointer-events-auto">
+        <h1 
+          id="heroName" 
+          class="title-name hero-title whitespace-nowrap font-black italic text-[#0F172A] uppercase cursor-pointer select-none inline-block transition-transform hover:scale-[1.01]" 
+          title="Hover over my name to shuffle fonts!"
+        >DHAYANANDHAN GK</h1>
       </div>
-      <div class="timeline-item">
-        <div class="meta">APR 2025 · COIMBATORE</div>
-        <h3>Cyber Security Intern</h3>
-        <div class="org">Prodigy Info Tech</div>
-        <p class="desc">Gained hands-on experience in identifying vulnerabilities, implementing security measures, and conducting penetration testing. Enhanced knowledge in ethical hacking and network security.</p>
+      
+      <div class="flex items-center gap-4 mt-2 z-10 relative">
+        <h2 class="text-xl md:text-2xl font-extrabold text-gray-700 tracking-wider">
+          AI Prompt Engineer | Web Developer 
+        </h2>
       </div>
-      <div class="timeline-item">
-        <div class="meta">MAY 2025 · COIMBATORE</div>
-        <h3>Cloud Computing on Google Cloud</h3>
-        <div class="org">Hexaind Technologies and Services LLP (Innovate Intern)</div>
-        <p class="desc">Worked with Google Cloud to build, run, and scale applications without managing physical hardware — accessing powerful servers, storage, and services over the internet.</p>
+
+      <p class="text-gray-500 font-medium text-sm md:text-lg leading-relaxed max-w-xl mb-6 z-10 relative">
+        AI Prompt Engineer at <strong>Makhil Techno Solutions</strong> &amp; Computer Science student at <strong>VSB College of Engineering Technical Campus</strong>. Passionate about AI workflows, Full-Stack Development, and creative content solutions.
+      </p>
+
+      <div class="hero-btns flex gap-4 pointer-events-auto z-50">
+        <a href="#experience" class="bg-[#A31621] hover:bg-[#8A121A] text-white font-extrabold text-xs md:text-sm px-4 md:px-6 py-4 rounded-lg transition-all hover:scale-105" style="display:inline-block; position: relative;">EXPERIENCE</a>
+        <a href="./assets/resume.pdf" download="Dhayanandhan_GK_Resume.pdf" target="_blank" rel="noopener noreferrer" class="bg-[#0F172A] hover:bg-black text-white font-extrabold text-xs md:text-sm px-4 md:px-6 py-4 rounded-lg transition-all hover:scale-105 flex items-center justify-center gap-2 whitespace-nowrap" style="display:inline-flex; position: relative;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          DOWNLOAD CV
+        </a>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- Philosophy -->
-<section id="visionary" class="section alt">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Approach</span>
-      <h2>Philosophy</h2>
-    </div>
-    <div class="philosophy-grid">
-      <div class="philosophy-card">
-        <h3>Innovation</h3>
-        <p>Innovation drives progress, and I strive to bring fresh ideas to every project I undertake. My goal is to push boundaries and create solutions that stand out.</p>
-        <p>By combining creativity with technical expertise, I aim to deliver impactful digital experiences that leave a lasting impression.</p>
-      </div>
-      <div class="philosophy-card">
-        <h3>Why work with me</h3>
-        <p>As a dedicated frontend developer, I specialize in building seamless and engaging user interfaces.</p>
-        <p>With a strong focus on innovation and attention to detail, I aim to deliver solutions that exceed expectations.</p>
+    <!-- CENTERED IMAGES -->
+    <div class="hero-img absolute top-0 left-0 w-full h-screen overflow-hidden z-10 pointer-events-none mix-blend-multiply opacity-25 md:opacity-100">
+      <!-- Base Spider-Man Mask Image -->
+      <img src="./assets/image-1.png" class="hero-spiderman" id="spiderImage" style="pointer-events: none;" alt="Spider-Man Mask">
+      
+      <!-- Person Image overlay WRAPPER -->
+      <div 
+        id="personImage" 
+        class="absolute bottom-[-5vh] left-1/2 transform -translate-x-1/2 z-[13] pointer-events-none overflow-hidden" 
+        style="height: 105vh; width: 188.13vh; mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat; mask-image: radial-gradient(circle 0px at 50% 50%, black 100%, transparent 100%); -webkit-mask-image: radial-gradient(circle 0px at 50% 50%, black 100%, transparent 100%);"
+      >
+        <img src="./assets/Media%20(2).jpg" style="position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: center 0%; left: 1%; top: 0;" alt="Dhayanandhan GK">
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Projects -->
-<section id="projects" class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Selected Work</span>
-      <h2>Projects</h2>
-      <p>A mix of full builds and experiments — from e-commerce to security tooling.</p>
-    </div>
-    <div class="projects-grid">
 
-      <div class="project-card">
-        <div class="project-thumb" style="background-image:url('ecom.jpg');"></div>
-        <div class="project-body">
-          <h3>E-commerce Website</h3>
-          <p>A unique e-commerce platform offering a delightful selection of sweets and snake-themed merchandise.</p>
-          <a class="project-link" href="https://dhayaxweb.neocities.org/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background-image:url('forticloud.jpeg');"></div>
-        <div class="project-body">
-          <h3>FortiCloud GCP Security</h3>
-          <p>A secure GCP-based multi-tenancy system ensuring tenant isolation, data protection, and compliance.</p>
-          <a class="project-link" href="https://eventfinderr.neocities.org/forticloud/forticloud%20(1)" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background-image:url('11557.jpg');"></div>
-        <div class="project-body">
-          <h3>Event Finder Website</h3>
-          <p>An intuitive platform to discover and explore events happening around you, with filtering by category and location.</p>
-          <a class="project-link" href="https://event-finderr.netlify.app/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background-image:url('google-weather-app-temperature.avif');"></div>
-        <div class="project-body">
-          <h3>Weather App</h3>
-          <p>A simple and intuitive weather application providing real-time weather updates and forecasts.</p>
-          <a class="project-link" href="https://dhaya2810.github.io/weather/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background-image:url('ec5173a804ea79feadb9ee04ca68de47648b59f8.png');"></div>
-        <div class="project-body">
-          <h3>Task Manager App</h3>
-          <p>An efficient task management tool to organize and prioritize your daily activities.</p>
-          <a class="project-link" href="https://dhaya2810.github.io/taskmanager/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background-image:url('4785b6142c3bd46b89f484286f0e60f7288f1d91.png');"></div>
-        <div class="project-body">
-          <h3>Blog Website</h3>
-          <p>A personal blog website to share thoughts, ideas, and experiences with the world.</p>
-          <a class="project-link" href="https://dhaya2810.github.io/blog/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background-image:url('dd41ba8c8ba90f450401d1988b8f493e6188cffa.png');"></div>
-        <div class="project-body">
-          <h3>Expense Tracker App</h3>
-          <p>A user-friendly application to track and manage your daily expenses effectively.</p>
-          <a class="project-link" href="https://dhaya2810.github.io/expense/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background-image:url('Cheapest-Deals-Exploring-the-10-Best-Websites-for-Booking-Hotels-1-1024x574.jpg');"></div>
-        <div class="project-body">
-          <h3>Hotel Booking Website</h3>
-          <p>A user-friendly platform to search, compare, and book hotels at the best prices for a seamless travel experience.</p>
-          <a class="project-link" href="https://dhaya2810.github.io/hotel/" target="_blank" rel="noopener">View project <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Education -->
-<section id="education" class="section alt">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Background</span>
-      <h2>Education</h2>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="meta">GRADUATING 2026 · GPA 80%</div>
-        <h3>B.E. Computer Science and Engineering</h3>
-        <div class="org">VSB College of Engineering Technical Campus</div>
-      </div>
-      <div class="timeline-item">
-        <div class="meta">COMPLETED 2022 · 78%</div>
-        <h3>Higher Secondary, Computer Science</h3>
-        <div class="org">SCM Higher Secondary School</div>
+  <!-- MARQUEE SECTION -->
+  <section class="marquee-container">
+    <div class="marquee-strip strip-dark">
+      <div class="marquee-content reverse">
+        <div class="marquee-item">AI PROMPT ENGINEERING <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-red-700 opacity-50" alt="icon"></div>
+        <div class="marquee-item">GENERATIVE AI &amp; LLMS <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-red-700 opacity-50" alt="icon"></div>
+        <div class="marquee-item">FULL STACK DEVELOPMENT <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-red-700 opacity-50" alt="icon"></div>
+        <div class="marquee-item">GOOGLE CLOUD PLATFORM <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-red-700 opacity-50" alt="icon"></div>
+        <div class="marquee-item">AWS CLOUD PRACTITIONER <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-red-700 opacity-50" alt="icon"></div>
+        <div class="marquee-item">AI PROMPT ENGINEERING <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-red-700 opacity-50" alt="icon"></div>
+        <div class="marquee-item">GENERATIVE AI &amp; LLMS <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-red-700 opacity-50" alt="icon"></div>
+        <div class="marquee-item">FULL STACK DEVELOPMENT <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-red-700 opacity-50" alt="icon"></div>
+        <div class="marquee-item">GOOGLE CLOUD PLATFORM <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-red-700 opacity-50" alt="icon"></div>
+        <div class="marquee-item">AWS CLOUD PRACTITIONER <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-red-700 opacity-50" alt="icon"></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Contact -->
-<section id="contact" class="section">
-  <div class="wrap contact-layout">
-    <div class="contact-info">
-      <span class="eyebrow">Get in touch</span>
-      <h3>Let's build something together</h3>
-      <p>Have a project in mind or just want to say hi? My inbox is open.</p>
-      <ul class="contact-list">
-        <li><a href="tel:+916379534712"><i class="fa-solid fa-phone"></i> +91 63795 34712</a></li>
-        <li><a href="mailto:dhayadharneesh@gmail.com"><i class="fa-solid fa-envelope"></i> dhayadharneesh@gmail.com</a></li>
-        <li><a href="https://www.linkedin.com/in/dhayanandhan-gk-3ba2332a6" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
-        <li><a href="https://wa.me/6379534712" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
-      </ul>
-    </div>
-    <form class="contact-form" id="contactForm">
-      <div class="form-row">
-        <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" required>
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" required>
-        </div>
-      </div>
-      <div class="field">
-        <label for="subject">Subject</label>
-        <input type="text" id="subject" required>
-      </div>
-      <div class="field">
-        <label for="message">Message</label>
-        <textarea id="message" required></textarea>
-      </div>
-      <button type="submit" class="btn">Send Message</button>
-      <p class="form-status" id="formStatus"></p>
-    </form>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer>
-  <div class="wrap">
-    <div class="footer-top">
-      <span class="brand">dhaya<span>.dev</span></span>
-      <div class="footer-social">
-        <a href="tel:+916379534712" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
-        <a href="https://www.linkedin.com/in/dhayanandhan-gk-3ba2332a6" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="mailto:dhayadharneesh@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-        <a href="https://instagram.com/dhaya.beatzz" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://wa.me/6379534712" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    
+    <div class="marquee-strip strip-red">
+      <div class="marquee-content">
+        <div class="marquee-item">CYBER RISK MANAGEMENT <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-white" alt="icon"></div>
+        <div class="marquee-item">DATA SCIENCE &amp; ANALYTICS <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-white" alt="icon"></div>
+        <div class="marquee-item">JAVA PROGRAMMING <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-white" alt="icon"></div>
+        <div class="marquee-item">CANVA &amp; GRAPHIC DESIGN <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-white" alt="icon"></div>
+        <div class="marquee-item">OPEN SOURCE CONNECT <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-white" alt="icon"></div>
+        <div class="marquee-item">CYBER RISK MANAGEMENT <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-white" alt="icon"></div>
+        <div class="marquee-item">DATA SCIENCE &amp; ANALYTICS <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-white" alt="icon"></div>
+        <div class="marquee-item">JAVA PROGRAMMING <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-white" alt="icon"></div>
+        <div class="marquee-item">CANVA &amp; GRAPHIC DESIGN <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-white" alt="icon"></div>
+        <div class="marquee-item">OPEN SOURCE CONNECT <img src="./assets/spydy.png" class="w-8 h-8 rounded border border-white" alt="icon"></div>
       </div>
     </div>
-    <p class="footer-bottom">© <span id="year"></span> Dhayanandhan GK. Built with HTML, CSS & JavaScript.</p>
-  </div>
-</footer>
+  </section>
 
-<script src="script.js"></script>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="relative min-h-[100vh] w-full px-10 md:px-24 py-20 flex flex-col md:flex-row justify-between items-start bg-white overflow-hidden">
+    
+    <!-- Background web left -->
+    <div class="absolute top-0 left-[0%] flex flex-col items-center z-[1] pointer-events-none about-web-drop">
+      <div class="w-[1px] h-[350px] bg-gray-300 opacity-50"></div>
+      <img src="./assets/web1.png" class="w-[250px] object-contain opacity-20 web-spin-only -mt-[125px]" alt="Web">
+    </div>
+    
+    <!-- Background web right -->
+    <div class="absolute top-0 right-[0%] flex flex-col items-center z-[1] pointer-events-none about-web-drop">
+      <div class="w-[1px] h-[250px] bg-gray-300 opacity-50"></div>
+      <img src="./assets/web1.png" class="w-[300px] object-contain opacity-20 transform scale-x-[-1] web-spin-only -mt-[150px]" alt="Web">
+    </div>
+
+    <div class="about-left w-full md:w-1/2 relative z-10 flex flex-col gap-6 pt-10 px-6 md:px-0">
+      <div class="flex items-center gap-2 text-[0.85rem] font-extrabold tracking-[0.15em] text-[#B91C1C]">
+        <img src="./assets/spydy.png" class="w-6 h-6 rounded border border-red-700" alt="Icon">
+        BEHIND THE MASK
+      </div>
+      
+      <div class="overflow-visible">
+        <h1 class="text-3xl sm:text-4xl md:text-[3.2rem] lg:text-[3.8rem] font-black italic leading-tight text-[#0F172A] uppercase tracking-tight whitespace-nowrap" style="text-shadow: 4px 4px 0px #B91C1C;">
+          DHAYANANDHAN GK
+        </h1>
+      </div>
+
+      <div class="text-gray-700 font-medium leading-relaxed max-w-lg mt-2 space-y-6 text-lg">
+        <p>
+          I am an <strong>AI Prompt Engineer</strong> at <strong>Makhil Techno Solutions</strong> and a Computer Science &amp; Engineering student at <strong>V.S.B. College of Engineering Technical Campus</strong>, deeply passionate about Artificial Intelligence, Full-Stack Development, and Creative Content.
+        </p>
+        <p>
+          With practical experience spanning <strong>Generative AI &amp; prompt workflows</strong>, <strong>Open Source contribution</strong> with Open Source Connect India, cloud computing on <strong>Google Cloud Platform (FortiCloud)</strong>, and <strong>Cyber Security</strong> at Prodigy InfoTech &amp; HP LIFE, I engineer secure, intelligent, and scalable digital solutions.
+        </p>
+      </div>
+
+      <div class="mt-4">
+        <h3 class="uppercase font-bold text-gray-400 tracking-widest text-sm border-b border-gray-200 pb-2 mb-4 inline-block">CORE ARSENAL</h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="pill-animate bg-white text-[#B91C1C] font-bold text-sm px-5 py-2.5 rounded-2xl border border-[#B91C1C]/30 hover:bg-[#B91C1C] hover:text-white hover:border-[#B91C1C] hover:shadow-[0_4px_15px_rgba(185,28,28,0.5)] transition-all duration-300 cursor-default" style="animation-delay: 0s;">AI Prompt Engineering</span>
+          <span class="pill-animate bg-white text-[#B91C1C] font-bold text-sm px-5 py-2.5 rounded-2xl border border-[#B91C1C]/30 hover:bg-[#B91C1C] hover:text-white hover:border-[#B91C1C] hover:shadow-[0_4px_15px_rgba(185,28,28,0.5)] transition-all duration-300 cursor-default" style="animation-delay: 0.15s;">Generative AI &amp; LLMs</span>
+          <span class="pill-animate bg-white text-[#B91C1C] font-bold text-sm px-5 py-2.5 rounded-2xl border border-[#B91C1C]/30 hover:bg-[#B91C1C] hover:text-white hover:border-[#B91C1C] hover:shadow-[0_4px_15px_rgba(185,28,28,0.5)] transition-all duration-300 cursor-default" style="animation-delay: 0.3s;">Full Stack Web Dev</span>
+          <span class="pill-animate bg-white text-[#B91C1C] font-bold text-sm px-5 py-2.5 rounded-2xl border border-[#B91C1C]/30 hover:bg-[#B91C1C] hover:text-white hover:border-[#B91C1C] hover:shadow-[0_4px_15px_rgba(185,28,28,0.5)] transition-all duration-300 cursor-default" style="animation-delay: 0.45s;">Google Cloud (GCP)</span>
+          <span class="pill-animate bg-white text-[#B91C1C] font-bold text-sm px-5 py-2.5 rounded-2xl border border-[#B91C1C]/30 hover:bg-[#B91C1C] hover:text-white hover:border-[#B91C1C] hover:shadow-[0_4px_15px_rgba(185,28,28,0.5)] transition-all duration-300 cursor-default" style="animation-delay: 0.6s;">AWS Cloud Practitioner</span>
+          <span class="pill-animate bg-white text-[#B91C1C] font-bold text-sm px-5 py-2.5 rounded-2xl border border-[#B91C1C]/30 hover:bg-[#B91C1C] hover:text-white hover:border-[#B91C1C] hover:shadow-[0_4px_15px_rgba(185,28,28,0.5)] transition-all duration-300 cursor-default" style="animation-delay: 0.75s;">Cyber Risk Management</span>
+          <span class="pill-animate bg-white text-[#B91C1C] font-bold text-sm px-5 py-2.5 rounded-2xl border border-[#B91C1C]/30 hover:bg-[#B91C1C] hover:text-white hover:border-[#B91C1C] hover:shadow-[0_4px_15px_rgba(185,28,28,0.5)] transition-all duration-300 cursor-default" style="animation-delay: 0.9s;">Data Science &amp; Analytics</span>
+          <span class="pill-animate bg-white text-[#B91C1C] font-bold text-sm px-5 py-2.5 rounded-2xl border border-[#B91C1C]/30 hover:bg-[#B91C1C] hover:text-white hover:border-[#B91C1C] hover:shadow-[0_4px_15px_rgba(185,28,28,0.5)] transition-all duration-300 cursor-default" style="animation-delay: 1.05s;">Canva &amp; Graphic Design</span>
+          <span class="pill-animate bg-white text-[#B91C1C] font-bold text-sm px-5 py-2.5 rounded-2xl border border-[#B91C1C]/30 hover:bg-[#B91C1C] hover:text-white hover:border-[#B91C1C] hover:shadow-[0_4px_15px_rgba(185,28,28,0.5)] transition-all duration-300 cursor-default" style="animation-delay: 1.2s;">Java Programming</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PENDULUM IMAGE (Desktop) -->
+    <div class="hidden md:flex absolute top-0 right-[22%] flex-col items-center z-10 pendulum-drop">
+      <div class="pendulum origin-top flex flex-col items-center">
+        <div class="w-[2px] h-[45vh] bg-[#B91C1C]"></div>
+        <div class="relative w-[300px] h-[300px] rounded-full border-[8px] border-[#B91C1C] overflow-hidden shadow-[0_20px_50px_rgba(185,28,28,0.2)] bg-white flex justify-center items-center">
+          <img src="./assets/mypic.png" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" alt="Profile of Dhayanandhan GK">
+        </div>
+      </div>
+    </div>
+
+    <!-- PENDULUM IMAGE (Mobile) -->
+    <div class="md:hidden w-full flex flex-col items-center mt-12 z-10 pendulum-drop">
+      <div class="pendulum origin-top flex flex-col items-center">
+        <div class="w-[2px] h-[100px] bg-[#B91C1C]"></div>
+        <div class="relative w-[280px] h-[280px] rounded-full border-[8px] border-[#B91C1C] overflow-hidden shadow-[0_20px_50px_rgba(185,28,28,0.2)] bg-white flex justify-center items-center">
+          <img src="./assets/mypic.png" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" alt="Profile of Dhayanandhan GK">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SKILLS SECTION -->
+  <section id="skills" class="relative min-h-screen w-full px-6 md:px-24 py-24 bg-white overflow-hidden flex flex-col items-center">
+    <img src="./assets/web1.png" class="web-bg-center" alt="Web">
+
+    <!-- Swinging Spiderman on the right -->
+    <div class="hidden lg:flex absolute top-0 right-[3%] xl:right-[5%] flex-col items-center z-30 pendulum-drop">
+      <div class="pendulum origin-top flex flex-col items-center">
+        <div class="w-[1px] h-[350px] bg-gray-400"></div>
+        <img src="./assets/spydy_hang.png" class="w-[160px] object-contain -mt-4 drop-shadow-xl" alt="Spiderman">
+      </div>
+    </div>
+    
+    <div class="text-center mb-16 relative z-10 flex flex-col items-center skills-header">
+      <h2 class="subtitle mb-2">ARSENAL &amp; EXPERTISE</h2>
+      <h1 class="title-name text-4xl md:text-[4rem]">TECHNICAL SKILLS.</h1>
+      <div class="w-16 h-1 bg-red-700 mt-4 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-5xl relative z-10">
+      
+      <!-- Skill 1: AI Prompt Engineering -->
+      <div class="skill-card bg-gray-50/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 flex justify-between items-center cursor-default">
+        <div class="flex items-center gap-4">
+          <div class="skill-dot w-2.5 h-2.5 rounded-full bg-red-700"></div>
+          <div>
+            <h3 class="font-black text-lg uppercase tracking-tight">AI PROMPT ENGINEERING</h3>
+            <p class="skill-cat text-xs font-bold text-gray-400 tracking-widest uppercase mt-0.5">GENERATIVE AI, LLMS &amp; WORKFLOW AUTOMATION</p>
+          </div>
+        </div>
+        <div class="skill-badge border border-red-300 text-red-600 bg-red-50/50 font-bold px-4 py-1.5 rounded-full text-[0.7rem] uppercase tracking-wider">SPECIALIST</div>
+      </div>
+
+      <!-- Skill 2: Java Programming -->
+      <div class="skill-card bg-gray-50/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 flex justify-between items-center cursor-default">
+        <div class="flex items-center gap-4">
+          <div class="skill-dot w-2.5 h-2.5 rounded-full bg-red-700"></div>
+          <div>
+            <h3 class="font-black text-lg uppercase tracking-tight">JAVA PROGRAMMING</h3>
+            <p class="skill-cat text-xs font-bold text-gray-400 tracking-widest uppercase mt-0.5">BASICS, STRUCTURE &amp; OOP ARCHITECTURE</p>
+          </div>
+        </div>
+        <div class="skill-badge border border-gray-300 text-gray-500 font-bold px-4 py-1.5 rounded-full text-[0.7rem] uppercase tracking-wider">CERTIFIED</div>
+      </div>
+
+      <!-- Skill 3: AWS Cloud Practitioner -->
+      <div class="skill-card bg-gray-50/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 flex justify-between items-center cursor-default">
+        <div class="flex items-center gap-4">
+          <div class="skill-dot w-2.5 h-2.5 rounded-full bg-red-700"></div>
+          <div>
+            <h3 class="font-black text-lg uppercase tracking-tight">AWS CLOUD PRACTITIONER</h3>
+            <p class="skill-cat text-xs font-bold text-gray-400 tracking-widest uppercase mt-0.5">CLOUD INFRASTRUCTURE, COMPUTE &amp; STORAGE</p>
+          </div>
+        </div>
+        <div class="skill-badge border border-gray-300 text-gray-500 font-bold px-4 py-1.5 rounded-full text-[0.7rem] uppercase tracking-wider">CERTIFIED</div>
+      </div>
+
+      <!-- Skill 4: Google Cloud Platform -->
+      <div class="skill-card bg-gray-50/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 flex justify-between items-center cursor-default">
+        <div class="flex items-center gap-4">
+          <div class="skill-dot w-2.5 h-2.5 rounded-full bg-red-700"></div>
+          <div>
+            <h3 class="font-black text-lg uppercase tracking-tight">GOOGLE CLOUD PLATFORM (GCP)</h3>
+            <p class="skill-cat text-xs font-bold text-gray-400 tracking-widest uppercase mt-0.5">IAM, VPC, CLOUD STORAGE &amp; FORTICLOUD</p>
+          </div>
+        </div>
+        <div class="skill-badge border border-gray-300 text-gray-500 font-bold px-4 py-1.5 rounded-full text-[0.7rem] uppercase tracking-wider">INTERN EXP</div>
+      </div>
+
+      <!-- Skill 5: Full Stack Development -->
+      <div class="skill-card bg-gray-50/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 flex justify-between items-center cursor-default">
+        <div class="flex items-center gap-4">
+          <div class="skill-dot w-2.5 h-2.5 rounded-full bg-red-700"></div>
+          <div>
+            <h3 class="font-black text-lg uppercase tracking-tight">FULL STACK DEVELOPMENT</h3>
+            <p class="skill-cat text-xs font-bold text-gray-400 tracking-widest uppercase mt-0.5">HTML5, CSS3, JAVASCRIPT &amp; FIREBASE</p>
+          </div>
+        </div>
+        <div class="skill-badge border border-gray-300 text-gray-500 font-bold px-4 py-1.5 rounded-full text-[0.7rem] uppercase tracking-wider">CERTIFIED</div>
+      </div>
+
+      <!-- Skill 6: Cyber Risk Management -->
+      <div class="skill-card bg-gray-50/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 flex justify-between items-center cursor-default">
+        <div class="flex items-center gap-4">
+          <div class="skill-dot w-2.5 h-2.5 rounded-full bg-red-700"></div>
+          <div>
+            <h3 class="font-black text-lg uppercase tracking-tight">CYBER RISK MANAGEMENT</h3>
+            <p class="skill-cat text-xs font-bold text-gray-400 tracking-widest uppercase mt-0.5">MULTI-TENANCY SECURITY &amp; FORTINET TOOLS</p>
+          </div>
+        </div>
+        <div class="skill-badge border border-gray-300 text-gray-500 font-bold px-4 py-1.5 rounded-full text-[0.7rem] uppercase tracking-wider">CERTIFIED</div>
+      </div>
+
+      <!-- Skill 7: Data Science & Analytics -->
+      <div class="skill-card bg-gray-50/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 flex justify-between items-center cursor-default">
+        <div class="flex items-center gap-4">
+          <div class="skill-dot w-2.5 h-2.5 rounded-full bg-red-700"></div>
+          <div>
+            <h3 class="font-black text-lg uppercase tracking-tight">DATA SCIENCE &amp; ANALYTICS</h3>
+            <p class="skill-cat text-xs font-bold text-gray-400 tracking-widest uppercase mt-0.5">DATA MODELING, ANALYTICS &amp; VISUALIZATION</p>
+          </div>
+        </div>
+        <div class="skill-badge border border-gray-300 text-gray-500 font-bold px-4 py-1.5 rounded-full text-[0.7rem] uppercase tracking-wider">CERTIFIED</div>
+      </div>
+
+      <!-- Skill 8: Machine Learning & AI Ethics -->
+      <div class="skill-card bg-gray-50/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 flex justify-between items-center cursor-default">
+        <div class="flex items-center gap-4">
+          <div class="skill-dot w-2.5 h-2.5 rounded-full bg-red-700"></div>
+          <div>
+            <h3 class="font-black text-lg uppercase tracking-tight">MACHINE LEARNING &amp; AI CONCEPTS</h3>
+            <p class="skill-cat text-xs font-bold text-gray-400 tracking-widest uppercase mt-0.5">DATA IN AI, WORKFLOWS &amp; ETHICS REGULATIONS</p>
+          </div>
+        </div>
+        <div class="skill-badge border border-gray-300 text-gray-500 font-bold px-4 py-1.5 rounded-full text-[0.7rem] uppercase tracking-wider">HP LIFE</div>
+      </div>
+
+      <!-- Skill 9: Canva & Graphic Design -->
+      <div class="skill-card bg-gray-50/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 flex justify-between items-center cursor-default">
+        <div class="flex items-center gap-4">
+          <div class="skill-dot w-2.5 h-2.5 rounded-full bg-red-700"></div>
+          <div>
+            <h3 class="font-black text-lg uppercase tracking-tight">CANVA &amp; GRAPHIC DESIGN</h3>
+            <p class="skill-cat text-xs font-bold text-gray-400 tracking-widest uppercase mt-0.5">CREATIVE CONTENT, UI CONCEPTS &amp; BRAND ASSETS</p>
+          </div>
+        </div>
+        <div class="skill-badge border border-red-300 text-red-600 bg-red-50/50 font-bold px-4 py-1.5 rounded-full text-[0.7rem] uppercase tracking-wider">TOP SKILL</div>
+      </div>
+
+      <!-- Skill 10: Open Source & Dev Tools -->
+      <div class="skill-card bg-gray-50/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 flex justify-between items-center cursor-default">
+        <div class="flex items-center gap-4">
+          <div class="skill-dot w-2.5 h-2.5 rounded-full bg-red-700"></div>
+          <div>
+            <h3 class="font-black text-lg uppercase tracking-tight">OPEN SOURCE &amp; DEV TOOLS</h3>
+            <p class="skill-cat text-xs font-bold text-gray-400 tracking-widest uppercase mt-0.5">GIT, GITHUB, VS CODE, ECLIPSE &amp; OPEN SOURCE CONNECT</p>
+          </div>
+        </div>
+        <div class="skill-badge border border-gray-300 text-gray-500 font-bold px-4 py-1.5 rounded-full text-[0.7rem] uppercase tracking-wider">CONTRIBUTOR</div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- INTERNSHIPS / EXPERIENCE SECTION -->
+  <section id="experience" class="relative min-h-screen w-full px-6 md:px-24 py-24 bg-[#F8F9FA] overflow-hidden flex flex-col items-center">
+    <img src="./assets/web1.png" class="absolute top-0 right-0 w-[500px] opacity-10 pointer-events-none z-0" alt="Web">
+    
+    <div class="text-center mb-16 relative z-10 flex flex-col items-center projects-header">
+      <h2 class="subtitle mb-2">PROFESSIONAL JOURNEY &amp; ROLES</h2>
+      <h1 class="title-name text-4xl md:text-[4rem]">EXPERIENCE &amp; INTERNSHIPS.</h1>
+      <div class="w-16 h-1 bg-red-700 mt-4 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 w-full max-w-4xl relative z-10 pl-0 md:pl-24">
+      
+      <!-- Role 1: Makhil Techno Solutions -->
+      <div class="project-card group bg-white border border-gray-100 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:-translate-y-1.5 hover:border-[#B91C1C] hover:shadow-[0_15px_40px_rgba(185,28,28,0.15)] transition-all duration-300">
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="font-black text-xl tracking-tight group-hover:text-[#A31621] transition-colors uppercase">
+            <span class="bg-[#B91C1C] text-white px-2 py-0.5 rounded mr-1">MAKHIL</span> TECHNO SOLUTIONS
+          </h3>
+          <span class="bg-red-50 text-red-700 border border-red-200 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">CURRENT ROLE</span>
+        </div>
+        <div class="text-gray-600 font-medium text-sm leading-relaxed mb-2 flex-grow transition-colors">
+          <strong class="text-gray-900 block mb-1 text-base">AI Prompt Engineer</strong>
+          <div class="text-xs font-bold text-gray-400 mb-4 group-hover:text-red-700/70 transition-colors">May 2026 – Present (7 months) • Palladam, Tamil Nadu, India</div>
+          <ul class="list-disc list-outside ml-4 space-y-2 group-hover:text-gray-800 transition-colors">
+            <li>Design, test, and optimize advanced prompt structures across Generative AI models and Large Language Models (LLMs) to ensure high-accuracy responses and zero hallucinations.</li>
+            <li>Implement cutting-edge AI tools into enterprise workflows to streamline business operations and automate routine tasks.</li>
+            <li>Adhere to AI ethics, safety constraints, prompt-injection defense mechanisms, and data governance standards.</li>
+          </ul>
+        </div>
+        <div class="flex gap-2 flex-wrap mt-6">
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">AI PROMPT ENGINEERING</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">GENERATIVE AI</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">LLMS</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">WORKFLOW AUTOMATION</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">AI ETHICS</span>
+        </div>
+      </div>
+
+      <!-- Role 2: Open Source Connect -->
+      <div class="project-card group bg-white border border-gray-100 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:-translate-y-1.5 hover:border-[#B91C1C] hover:shadow-[0_15px_40px_rgba(185,28,28,0.15)] transition-all duration-300">
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="font-black text-xl tracking-tight group-hover:text-[#A31621] transition-colors uppercase">
+            <span class="bg-[#059669] text-white px-2 py-0.5 rounded mr-1">OPEN SOURCE</span> CONNECT
+          </h3>
+          <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">OPEN SOURCE</span>
+        </div>
+        <div class="text-gray-600 font-medium text-sm leading-relaxed mb-2 flex-grow transition-colors">
+          <strong class="text-gray-900 block mb-1 text-base">Contributor for Open Source Connect India</strong>
+          <div class="text-xs font-bold text-gray-400 mb-4 group-hover:text-red-700/70 transition-colors">August 2025 – December 2025 (5 months) • India</div>
+          <ul class="list-disc list-outside ml-4 space-y-2 group-hover:text-gray-800 transition-colors">
+            <li>Contributed modular code, bug fixes, and documentation improvements to community developer projects under Open Source Connect India.</li>
+            <li>Collaborated with distributed engineering teams utilizing Git version control, pull requests, issue triaging, and peer code reviews.</li>
+            <li>Promoted open-source adoption, community knowledge sharing, and reusable software development practices.</li>
+          </ul>
+        </div>
+        <div class="flex gap-2 flex-wrap mt-6">
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">OPEN SOURCE</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">GIT &amp; GITHUB</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">COMMUNITY TOOLS</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CODE REVIEW</span>
+        </div>
+      </div>
+
+      <!-- Role 3: Innovate Intern - Google Cloud -->
+      <div class="project-card group bg-white border border-gray-100 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:-translate-y-1.5 hover:border-[#B91C1C] hover:shadow-[0_15px_40px_rgba(185,28,28,0.15)] transition-all duration-300">
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="font-black text-xl tracking-tight group-hover:text-[#A31621] transition-colors uppercase">
+            <span class="bg-[#2563EB] text-white px-2 py-0.5 rounded mr-1">INNOVATE</span> INTERN
+          </h3>
+          <span class="bg-blue-50 text-blue-700 border border-blue-200 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">CLOUD INTERNSHIP</span>
+        </div>
+        <div class="text-gray-600 font-medium text-sm leading-relaxed mb-2 flex-grow transition-colors">
+          <strong class="text-gray-900 block mb-1 text-base">Cloud Computing on Google Cloud</strong>
+          <div class="text-xs font-bold text-gray-400 mb-4 group-hover:text-red-700/70 transition-colors">July 2025 – August 2025 (2 months) • Coimbatore, Tamil Nadu, India</div>
+          <ul class="list-disc list-outside ml-4 space-y-2 group-hover:text-gray-800 transition-colors">
+            <li>Worked on the capstone project <em>"FortiCloud: Strengthening Multi-Tenancy Security in Google Cloud Platform"</em>.</li>
+            <li>Engineered multi-tenant isolation architectures in GCP utilizing IAM role-based controls, Virtual Private Cloud (VPC) subnets, and Cloud Storage security policies.</li>
+            <li>Integrated Fortinet cloud security tools to prevent cross-tenant attack vectors and unauthorized data access.</li>
+          </ul>
+        </div>
+        <div class="flex gap-2 flex-wrap mt-6">
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">GOOGLE CLOUD</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">FORTICLOUD</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">IAM &amp; VPC</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">FORTINET TOOLS</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">MULTI-TENANCY SECURITY</span>
+        </div>
+      </div>
+
+      <!-- Role 4: Prodigy InfoTech -->
+      <div class="project-card group bg-white border border-gray-100 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:-translate-y-1.5 hover:border-[#B91C1C] hover:shadow-[0_15px_40px_rgba(185,28,28,0.15)] transition-all duration-300">
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="font-black text-xl tracking-tight group-hover:text-[#A31621] transition-colors uppercase">
+            <span class="bg-[#7C3AED] text-white px-2 py-0.5 rounded mr-1">PRODIGY</span> INFOTECH
+          </h3>
+          <span class="bg-purple-50 text-purple-700 border border-purple-200 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">SECURITY INTERNSHIP</span>
+        </div>
+        <div class="text-gray-600 font-medium text-sm leading-relaxed mb-2 flex-grow transition-colors">
+          <strong class="text-gray-900 block mb-1 text-base">Cyber Security Student / Intern</strong>
+          <div class="text-xs font-bold text-gray-400 mb-4 group-hover:text-red-700/70 transition-colors">May 2025 – May 2025 (1 month) • Coimbatore, Tamil Nadu, India</div>
+          <ul class="list-disc list-outside ml-4 space-y-2 group-hover:text-gray-800 transition-colors">
+            <li>Gained hands-on experience in cybersecurity fundamentals, system vulnerability inspection, and defensive hardening.</li>
+            <li>Analyzed network security parameters, traffic anomalies, and proactive defenses to neutralize threat vectors.</li>
+            <li>Developed critical incident-response thinking and real-world security remediation workflows.</li>
+          </ul>
+        </div>
+        <div class="flex gap-2 flex-wrap mt-6">
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CYBER SECURITY</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">THREAT MITIGATION</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">NETWORK DEFENSE</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">VULNERABILITY ANALYSIS</span>
+        </div>
+      </div>
+
+      <!-- Role 5: HP LIFE -->
+      <div class="project-card group bg-white border border-gray-100 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:-translate-y-1.5 hover:border-[#B91C1C] hover:shadow-[0_15px_40px_rgba(185,28,28,0.15)] transition-all duration-300">
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="font-black text-xl tracking-tight group-hover:text-[#A31621] transition-colors uppercase">
+            <span class="bg-[#0284C7] text-white px-2 py-0.5 rounded mr-1">HP</span> LIFE
+          </h3>
+          <span class="bg-cyan-50 text-cyan-700 border border-cyan-200 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">AI &amp; SECURITY</span>
+        </div>
+        <div class="text-gray-600 font-medium text-sm leading-relaxed mb-2 flex-grow transition-colors">
+          <strong class="text-gray-900 block mb-1 text-base">Cyber Security Architect &amp; Artificial Intelligence Engineer / Intern</strong>
+          <div class="text-xs font-bold text-gray-400 mb-4 group-hover:text-red-700/70 transition-colors">December 2024 – December 2024 (1 month) • Coimbatore, Tamil Nadu, India</div>
+          <ul class="list-disc list-outside ml-4 space-y-2 group-hover:text-gray-800 transition-colors">
+            <li>Studied key AI concepts and applications including Machine Learning algorithms, Generative AI models, and Large Language Models.</li>
+            <li>Analyzed the critical role high-fidelity data plays in AI model training, fine-tuning, and production performance.</li>
+            <li>Explored practical business workflow integration with AI tools while evaluating AI ethics, safety regulations, and legal governance.</li>
+            <li>Investigated enterprise security architecture principles for safeguarding cloud workloads and intelligent systems.</li>
+          </ul>
+        </div>
+        <div class="flex gap-2 flex-wrap mt-6">
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">ARTIFICIAL INTELLIGENCE</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CYBER SECURITY ARCHITECT</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">GENERATIVE AI</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">AI ETHICS &amp; REGULATIONS</span>
+          <span class="border border-gray-200 text-gray-500 group-hover:border-red-700/30 group-hover:text-red-700 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">DATA PIPELINES</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Standing Spider-Man Left -->
+    <img src="./assets/spydy_stand.png" class="projects-spider absolute left-[-50px] bottom-0 h-[600px] object-contain z-20 pointer-events-none" alt="Spider-Man Standing">
+  </section>
+
+  <!-- EDUCATION SECTION -->
+  <section id="education" class="relative w-full px-6 md:px-24 py-24 bg-[#F8F9FA] overflow-hidden flex flex-col items-center">
+    <div class="text-center mb-16 relative z-10 flex flex-col items-center">
+      <h2 class="text-[0.85rem] font-extrabold tracking-[0.15em] text-[#B91C1C] mb-2">ACADEMIC BACKGROUND</h2>
+      <h1 class="text-4xl md:text-[4rem] font-black italic leading-[0.9] text-[#0F172A] uppercase tracking-[-0.02em]" style="text-shadow: 4px 4px 0px #B91C1C;">EDUCATION.</h1>
+      <div class="w-16 h-1 bg-red-700 mt-4 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl relative z-10">
+      
+      <!-- Education 1 -->
+      <div class="bg-white border border-gray-100 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:-translate-y-1.5 hover:border-[#B91C1C] hover:shadow-[0_15px_40px_rgba(185,28,28,0.15)] transition-all duration-300">
+        <h3 class="font-black text-xl tracking-tight text-gray-900 mb-2 uppercase">V.S.B College of Engineering Technical Campus</h3>
+        <p class="text-gray-500 font-bold text-sm mb-4">Coimbatore / Karur | 2022 – 2026</p>
+        <p class="text-[#B91C1C] font-bold text-lg mb-2">BE.CSE – Computer Science &amp; Engineering</p>
+        <div class="bg-gray-100 text-gray-700 font-bold px-4 py-2 rounded-lg self-start text-sm mt-auto">Score: 79%</div>
+      </div>
+
+      <!-- Education 2 -->
+      <div class="bg-white border border-gray-100 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:-translate-y-1.5 hover:border-[#B91C1C] hover:shadow-[0_15px_40px_rgba(185,28,28,0.15)] transition-all duration-300">
+        <h3 class="font-black text-xl tracking-tight text-gray-900 mb-2 uppercase">SCM Higher Secondary School</h3>
+        <p class="text-gray-500 font-bold text-sm mb-4">Tamil Nadu | 2021 – 2022</p>
+        <p class="text-[#B91C1C] font-bold text-lg mb-2">Higher Secondary Certificate (HSC)</p>
+        <div class="bg-gray-100 text-gray-700 font-bold px-4 py-2 rounded-lg self-start text-sm mt-auto">Score: 77%</div>
+      </div>
+
+      <!-- Education 3 -->
+      <div class="bg-white border border-gray-100 rounded-2xl p-8 flex flex-col h-full shadow-sm hover:-translate-y-1.5 hover:border-[#B91C1C] hover:shadow-[0_15px_40px_rgba(185,28,28,0.15)] transition-all duration-300">
+        <h3 class="font-black text-xl tracking-tight text-gray-900 mb-2 uppercase">SCM Higher Secondary School</h3>
+        <p class="text-gray-500 font-bold text-sm mb-4">Tamil Nadu | 2019 – 2020</p>
+        <p class="text-[#B91C1C] font-bold text-lg mb-2">Secondary School Leaving Certificate (SSLC)</p>
+        <div class="bg-gray-100 text-gray-700 font-bold px-4 py-2 rounded-lg self-start text-sm mt-auto">Score: 71%</div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- CERTIFICATIONS SECTION -->
+  <section id="certifications" class="relative w-full px-6 md:px-24 py-24 bg-white overflow-hidden flex flex-col items-center">
+    <div class="text-center mb-16 relative z-10 flex flex-col items-center">
+      <h2 class="text-[0.85rem] font-extrabold tracking-[0.15em] text-[#B91C1C] mb-2">AWARDS &amp; RECOGNITION</h2>
+      <h1 class="text-4xl md:text-[4rem] font-black italic leading-[0.9] text-[#0F172A] uppercase tracking-[-0.02em]" style="text-shadow: 4px 4px 0px #B91C1C;">CERTIFICATIONS.</h1>
+      <div class="w-16 h-1 bg-red-700 mt-4 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl relative z-10">
+      
+      <!-- Cert 1: Basics and Structure of Java Programming -->
+      <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-6 flex items-center gap-4 hover:-translate-y-1 hover:border-[#B91C1C] hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 rounded-full bg-red-100 text-[#B91C1C] flex items-center justify-center font-black text-xl flex-shrink-0">J</div>
+        <div>
+          <h3 class="font-bold text-gray-900 leading-tight">Basics and Structure of Java Programming</h3>
+          <p class="text-sm font-semibold text-gray-500 mt-1 uppercase tracking-wider text-[0.65rem]">Java Fundamentals &amp; Data Structures</p>
+        </div>
+      </div>
+
+      <!-- Cert 2: AWS Cloud Practitioner -->
+      <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-6 flex items-center gap-4 hover:-translate-y-1 hover:border-[#B91C1C] hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-black text-lg flex-shrink-0">AWS</div>
+        <div>
+          <h3 class="font-bold text-gray-900 leading-tight">AWS Cloud Practitioner</h3>
+          <p class="text-sm font-semibold text-gray-500 mt-1 uppercase tracking-wider text-[0.65rem]">Amazon Web Services — Cloud Architecture</p>
+        </div>
+      </div>
+
+      <!-- Cert 3: Cyber Risk Management -->
+      <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-6 flex items-center gap-4 hover:-translate-y-1 hover:border-[#B91C1C] hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-black text-xl flex-shrink-0">C</div>
+        <div>
+          <h3 class="font-bold text-gray-900 leading-tight">Cyber Risk Management</h3>
+          <p class="text-sm font-semibold text-gray-500 mt-1 uppercase tracking-wider text-[0.65rem]">Threat Modeling, Security &amp; Compliance</p>
+        </div>
+      </div>
+
+      <!-- Cert 4: Data Science & Analytics -->
+      <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-6 flex items-center gap-4 hover:-translate-y-1 hover:border-[#B91C1C] hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-black text-xl flex-shrink-0">D</div>
+        <div>
+          <h3 class="font-bold text-gray-900 leading-tight">Data Science &amp; Analytics</h3>
+          <p class="text-sm font-semibold text-gray-500 mt-1 uppercase tracking-wider text-[0.65rem]">Statistical Analysis &amp; Data Insights</p>
+        </div>
+      </div>
+
+      <!-- Cert 5: Full Stack Development -->
+      <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-6 flex items-center gap-4 hover:-translate-y-1 hover:border-[#B91C1C] hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-black text-lg flex-shrink-0">FS</div>
+        <div>
+          <h3 class="font-bold text-gray-900 leading-tight">Full Stack Development</h3>
+          <p class="text-sm font-semibold text-gray-500 mt-1 uppercase tracking-wider text-[0.65rem]">Frontend, Backend &amp; Database Integration</p>
+        </div>
+      </div>
+
+      <!-- Cert 6: HTML, CSS Certification -->
+      <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-6 flex items-center gap-4 hover:-translate-y-1 hover:border-[#B91C1C] hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 rounded-full bg-red-100 text-[#B91C1C] flex items-center justify-center font-black text-xl flex-shrink-0">I</div>
+        <div>
+          <h3 class="font-bold text-gray-900 leading-tight">HTML, CSS Certification</h3>
+          <p class="text-sm font-semibold text-gray-500 mt-1 uppercase tracking-wider text-[0.65rem]">Infosys Springboard — 2024</p>
+        </div>
+      </div>
+
+      <!-- Cert 7: WEB3IMMENSION Workshop -->
+      <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-6 flex items-center gap-4 hover:-translate-y-1 hover:border-[#B91C1C] hover:shadow-md transition-all duration-300">
+        <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center font-black text-xl flex-shrink-0">W</div>
+        <div>
+          <h3 class="font-bold text-gray-900 leading-tight">WEB3IMMENSION Workshop</h3>
+          <p class="text-sm font-semibold text-gray-500 mt-1 uppercase tracking-wider text-[0.65rem]">Conducted by SKCET — 2024</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PROJECTS SECTION -->
+  <section id="apps" class="relative min-h-screen w-full px-6 md:px-24 py-24 bg-black overflow-hidden flex flex-col items-center">
+    <div class="text-center mb-8 relative z-10 flex flex-col items-center">
+      <h2 class="text-[0.85rem] font-extrabold tracking-[0.15em] text-red-500 mb-2">SELECTED WORKS</h2>
+      <h1 class="text-4xl md:text-[4rem] font-black italic leading-[0.9] text-white uppercase tracking-[-0.02em]" style="text-shadow: 4px 4px 0px #B91C1C;">PROJECTS.</h1>
+      <div class="w-16 h-1 bg-red-700 mt-4 rounded-full"></div>
+      <p class="text-gray-400 text-sm max-w-xl text-center mt-4 font-medium">
+        A mix of full builds, web applications, cloud security architectures, and tools.
+      </p>
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div class="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-12 relative z-10 max-w-4xl px-2">
+      <button onclick="filterProjects('all')" class="proj-filter-btn active-filter px-4 md:px-5 py-2 md:py-2.5 rounded-full text-[0.7rem] md:text-xs font-bold uppercase tracking-wider transition-all duration-300" data-filter="all">
+        All <span class="opacity-75">(9)</span>
+      </button>
+      <button onclick="filterProjects('web')" class="proj-filter-btn px-4 md:px-5 py-2 md:py-2.5 rounded-full text-[0.7rem] md:text-xs font-bold uppercase tracking-wider transition-all duration-300" data-filter="web">
+        Web Apps <span class="opacity-75">(3)</span>
+      </button>
+      <button onclick="filterProjects('ecom')" class="proj-filter-btn px-4 md:px-5 py-2 md:py-2.5 rounded-full text-[0.7rem] md:text-xs font-bold uppercase tracking-wider transition-all duration-300" data-filter="ecom">
+        E-Commerce &amp; Booking <span class="opacity-75">(2)</span>
+      </button>
+      <button onclick="filterProjects('security')" class="proj-filter-btn px-4 md:px-5 py-2 md:py-2.5 rounded-full text-[0.7rem] md:text-xs font-bold uppercase tracking-wider transition-all duration-300" data-filter="security">
+        Cloud &amp; Security <span class="opacity-75">(1)</span>
+      </button>
+      <button onclick="filterProjects('tools')" class="proj-filter-btn px-4 md:px-5 py-2 md:py-2.5 rounded-full text-[0.7rem] md:text-xs font-bold uppercase tracking-wider transition-all duration-300" data-filter="tools">
+        Utilities &amp; Tools <span class="opacity-75">(3)</span>
+      </button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl relative z-10">
+      
+      <!-- Project 1 — Event Finder -->
+      <div class="project-item-card group bg-gradient-to-b from-[#1a1a2e] to-[#0f172a] border border-red-900/30 rounded-[2rem] p-10 flex flex-col shadow-2xl hover:-translate-y-3 hover:border-red-500 hover:shadow-[0_0_50px_-12px_rgba(220,38,38,0.4)] transition-all duration-500 relative overflow-hidden" data-category="web" data-featured="true">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-red-600/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-red-600/20 transition-all duration-500"></div>
+        <div class="flex items-center gap-6 mb-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center text-white font-bold text-3xl shadow-[0_0_30px_rgba(220,38,38,0.3)] group-hover:scale-110 transition-transform duration-500 z-10 relative">EF</div>
+          <div>
+            <h3 class="font-black text-2xl tracking-tight uppercase text-white group-hover:text-red-500 transition-colors">Event Finder</h3>
+            <p class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-1">WEB APPLICATION</p>
+          </div>
+        </div>
+        <p class="text-gray-400 font-medium text-[0.8rem] md:text-sm leading-relaxed mb-8 flex-grow z-10 relative">
+          An intuitive platform to discover and explore events happening around you, with filtering by category and location, management tools, and automated notifications.
+        </p>
+        <div class="flex gap-2 flex-wrap mb-6">
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">HTML5</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CSS3</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">JAVASCRIPT</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">AUTOMATION</span>
+        </div>
+        <a href="https://event-finderr.netlify.app/" target="_blank" rel="noopener noreferrer" class="bg-white text-[#0F172A] font-bold px-6 py-3 rounded-full text-sm uppercase tracking-wider hover:bg-red-600 hover:text-white transition-colors self-start inline-flex items-center gap-2 mt-auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Project
+        </a>
+      </div>
+
+      <!-- Project 2 — E-Commerce Website -->
+      <div class="project-item-card group bg-gradient-to-b from-[#1a1a2e] to-[#0f172a] border border-red-900/30 rounded-[2rem] p-10 flex flex-col shadow-2xl hover:-translate-y-3 hover:border-red-500 hover:shadow-[0_0_50px_-12px_rgba(220,38,38,0.4)] transition-all duration-500 relative overflow-hidden" data-category="ecom" data-featured="true">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-red-600/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-red-600/20 transition-all duration-500"></div>
+        <div class="flex items-center gap-6 mb-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center text-white font-bold text-3xl shadow-[0_0_30px_rgba(220,38,38,0.3)] group-hover:scale-110 transition-transform duration-500 z-10 relative">EC</div>
+          <div>
+            <h3 class="font-black text-2xl tracking-tight uppercase text-white group-hover:text-red-500 transition-colors">E-Commerce Website</h3>
+            <p class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-1">SWEETS &amp; SNACKS STORE</p>
+          </div>
+        </div>
+        <p class="text-gray-400 font-medium text-[0.8rem] md:text-sm leading-relaxed mb-8 flex-grow z-10 relative">
+          A unique e-commerce platform offering a delightful selection of sweets and snacks merchandise with convenient browsing, ordering, and cart interactions.
+        </p>
+        <div class="flex gap-2 flex-wrap mb-6">
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">HTML5</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CSS3</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">JAVASCRIPT</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">E-COMMERCE</span>
+        </div>
+        <a href="https://dhayaxweb.neocities.org/" target="_blank" rel="noopener noreferrer" class="bg-white text-[#0F172A] font-bold px-6 py-3 rounded-full text-sm uppercase tracking-wider hover:bg-red-600 hover:text-white transition-colors self-start inline-flex items-center gap-2 mt-auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Project
+        </a>
+      </div>
+
+      <!-- Project 3 — Forti Cloud -->
+      <div class="project-item-card group bg-gradient-to-b from-[#1a1a2e] to-[#0f172a] border border-red-900/30 rounded-[2rem] p-10 flex flex-col shadow-2xl hover:-translate-y-3 hover:border-red-500 hover:shadow-[0_0_50px_-12px_rgba(220,38,38,0.4)] transition-all duration-500 relative overflow-hidden" data-category="security" data-featured="true">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-red-600/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-red-600/20 transition-all duration-500"></div>
+        <div class="flex items-center gap-6 mb-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center text-white font-bold text-3xl shadow-[0_0_30px_rgba(220,38,38,0.3)] group-hover:scale-110 transition-transform duration-500 z-10 relative">FC</div>
+          <div>
+            <h3 class="font-black text-2xl tracking-tight uppercase text-white group-hover:text-red-500 transition-colors">Forti Cloud</h3>
+            <p class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-1">GCP CLOUD SECURITY PLATFORM</p>
+          </div>
+        </div>
+        <p class="text-gray-400 font-medium text-[0.8rem] md:text-sm leading-relaxed mb-8 flex-grow z-10 relative">
+          A cloud security platform focused on strengthening multi-tenancy security in Google Cloud Platform, leveraging IAM, VPC, Cloud Armor, GKE, Terraform, and Fortinet tools for robust isolation and protection.
+        </p>
+        <div class="flex gap-2 flex-wrap mb-6">
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">GCP</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">FORTINET</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">TERRAFORM</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">GKE</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CLOUD ARMOR</span>
+        </div>
+        <a href="https://eventfinderr.neocities.org/forticloud/forticloud%20(1)" target="_blank" rel="noopener noreferrer" class="bg-white text-[#0F172A] font-bold px-6 py-3 rounded-full text-sm uppercase tracking-wider hover:bg-red-600 hover:text-white transition-colors self-start inline-flex items-center gap-2 mt-auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Project
+        </a>
+      </div>
+
+      <!-- Project 4 — Portfolio -->
+      <div class="project-item-card group bg-gradient-to-b from-[#1a1a2e] to-[#0f172a] border border-red-900/30 rounded-[2rem] p-10 flex flex-col shadow-2xl hover:-translate-y-3 hover:border-red-500 hover:shadow-[0_0_50px_-12px_rgba(220,38,38,0.4)] transition-all duration-500 relative overflow-hidden" data-category="web" data-featured="true">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-red-600/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-red-600/20 transition-all duration-500"></div>
+        <div class="flex items-center gap-6 mb-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center text-white font-bold text-3xl shadow-[0_0_30px_rgba(220,38,38,0.3)] group-hover:scale-110 transition-transform duration-500 z-10 relative">PP</div>
+          <div>
+            <h3 class="font-black text-2xl tracking-tight uppercase text-white group-hover:text-red-500 transition-colors">Personal Portfolio</h3>
+            <p class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-1">SHOWCASE WEBSITE</p>
+          </div>
+        </div>
+        <p class="text-gray-400 font-medium text-[0.8rem] md:text-sm leading-relaxed mb-8 flex-grow z-10 relative">
+          A personal portfolio showcasing skills, projects, and achievements in web development, programming, and technology solutions, built with attention to design, usability, and functionality.
+        </p>
+        <div class="flex gap-2 flex-wrap mb-6">
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">HTML5</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CSS3</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">JAVASCRIPT</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">GITHUB PAGES</span>
+        </div>
+        <a href="https://dhaya2810.github.io/My-Portfolio/" target="_blank" rel="noopener noreferrer" class="bg-white text-[#0F172A] font-bold px-6 py-3 rounded-full text-sm uppercase tracking-wider hover:bg-red-600 hover:text-white transition-colors self-start inline-flex items-center gap-2 mt-auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Live
+        </a>
+      </div>
+
+      <!-- Project 5 — Weather App -->
+      <div class="project-item-card group bg-gradient-to-b from-[#1a1a2e] to-[#0f172a] border border-red-900/30 rounded-[2rem] p-10 flex flex-col shadow-2xl hover:-translate-y-3 hover:border-red-500 hover:shadow-[0_0_50px_-12px_rgba(220,38,38,0.4)] transition-all duration-500 relative overflow-hidden" data-category="tools" data-featured="false" style="display: none;">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-red-600/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-red-600/20 transition-all duration-500"></div>
+        <div class="flex items-center gap-6 mb-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center text-white font-bold text-3xl shadow-[0_0_30px_rgba(220,38,38,0.3)] group-hover:scale-110 transition-transform duration-500 z-10 relative">WA</div>
+          <div>
+            <h3 class="font-black text-2xl tracking-tight uppercase text-white group-hover:text-red-500 transition-colors">Weather App</h3>
+            <p class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-1">LIVE FORECAST TOOL</p>
+          </div>
+        </div>
+        <p class="text-gray-400 font-medium text-[0.8rem] md:text-sm leading-relaxed mb-8 flex-grow z-10 relative">
+          A simple and intuitive weather application providing real-time weather updates, local forecasts, temperature tracking, and meteorological metrics using weather APIs.
+        </p>
+        <div class="flex gap-2 flex-wrap mb-6">
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">JAVASCRIPT</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">WEATHER API</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">HTML5</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CSS3</span>
+        </div>
+        <a href="https://dhaya2810.github.io/weather/" target="_blank" rel="noopener noreferrer" class="bg-white text-[#0F172A] font-bold px-6 py-3 rounded-full text-sm uppercase tracking-wider hover:bg-red-600 hover:text-white transition-colors self-start inline-flex items-center gap-2 mt-auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Live
+        </a>
+      </div>
+
+      <!-- Project 6 — Task Manager App -->
+      <div class="project-item-card group bg-gradient-to-b from-[#1a1a2e] to-[#0f172a] border border-red-900/30 rounded-[2rem] p-10 flex flex-col shadow-2xl hover:-translate-y-3 hover:border-red-500 hover:shadow-[0_0_50px_-12px_rgba(220,38,38,0.4)] transition-all duration-500 relative overflow-hidden" data-category="tools" data-featured="false" style="display: none;">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-red-600/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-red-600/20 transition-all duration-500"></div>
+        <div class="flex items-center gap-6 mb-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center text-white font-bold text-3xl shadow-[0_0_30px_rgba(220,38,38,0.3)] group-hover:scale-110 transition-transform duration-500 z-10 relative">TM</div>
+          <div>
+            <h3 class="font-black text-2xl tracking-tight uppercase text-white group-hover:text-red-500 transition-colors">Task Manager App</h3>
+            <p class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-1">PRODUCTIVITY TOOL</p>
+          </div>
+        </div>
+        <p class="text-gray-400 font-medium text-[0.8rem] md:text-sm leading-relaxed mb-8 flex-grow z-10 relative">
+          An efficient task management tool to organize, prioritize, and monitor daily workflows and to-do activities with persistent LocalStorage state management.
+        </p>
+        <div class="flex gap-2 flex-wrap mb-6">
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">JAVASCRIPT</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">LOCALSTORAGE</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">HTML5</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CSS3</span>
+        </div>
+        <a href="https://dhaya2810.github.io/taskmanager/" target="_blank" rel="noopener noreferrer" class="bg-white text-[#0F172A] font-bold px-6 py-3 rounded-full text-sm uppercase tracking-wider hover:bg-red-600 hover:text-white transition-colors self-start inline-flex items-center gap-2 mt-auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Live
+        </a>
+      </div>
+
+      <!-- Project 7 — Blog Website -->
+      <div class="project-item-card group bg-gradient-to-b from-[#1a1a2e] to-[#0f172a] border border-red-900/30 rounded-[2rem] p-10 flex flex-col shadow-2xl hover:-translate-y-3 hover:border-red-500 hover:shadow-[0_0_50px_-12px_rgba(220,38,38,0.4)] transition-all duration-500 relative overflow-hidden" data-category="web" data-featured="false" style="display: none;">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-red-600/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-red-600/20 transition-all duration-500"></div>
+        <div class="flex items-center gap-6 mb-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center text-white font-bold text-3xl shadow-[0_0_30px_rgba(220,38,38,0.3)] group-hover:scale-110 transition-transform duration-500 z-10 relative">BW</div>
+          <div>
+            <h3 class="font-black text-2xl tracking-tight uppercase text-white group-hover:text-red-500 transition-colors">Blog Website</h3>
+            <p class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-1">CONTENT PLATFORM</p>
+          </div>
+        </div>
+        <p class="text-gray-400 font-medium text-[0.8rem] md:text-sm leading-relaxed mb-8 flex-grow z-10 relative">
+          A personal blog website to share engineering thoughts, technical articles, and insights with a modern, distraction-free reading experience.
+        </p>
+        <div class="flex gap-2 flex-wrap mb-6">
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">HTML5</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CSS3</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">JAVASCRIPT</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">RESPONSIVE</span>
+        </div>
+        <a href="https://dhaya2810.github.io/blog/" target="_blank" rel="noopener noreferrer" class="bg-white text-[#0F172A] font-bold px-6 py-3 rounded-full text-sm uppercase tracking-wider hover:bg-red-600 hover:text-white transition-colors self-start inline-flex items-center gap-2 mt-auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Live
+        </a>
+      </div>
+
+      <!-- Project 8 — Expense Tracker App -->
+      <div class="project-item-card group bg-gradient-to-b from-[#1a1a2e] to-[#0f172a] border border-red-900/30 rounded-[2rem] p-10 flex flex-col shadow-2xl hover:-translate-y-3 hover:border-red-500 hover:shadow-[0_0_50px_-12px_rgba(220,38,38,0.4)] transition-all duration-500 relative overflow-hidden" data-category="tools" data-featured="false" style="display: none;">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-red-600/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-red-600/20 transition-all duration-500"></div>
+        <div class="flex items-center gap-6 mb-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center text-white font-bold text-3xl shadow-[0_0_30px_rgba(220,38,38,0.3)] group-hover:scale-110 transition-transform duration-500 z-10 relative">ET</div>
+          <div>
+            <h3 class="font-black text-2xl tracking-tight uppercase text-white group-hover:text-red-500 transition-colors">Expense Tracker App</h3>
+            <p class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-1">FINANCIAL DASHBOARD</p>
+          </div>
+        </div>
+        <p class="text-gray-400 font-medium text-[0.8rem] md:text-sm leading-relaxed mb-8 flex-grow z-10 relative">
+          A user-friendly personal finance application to track and calculate daily incomes and expenditures with real-time balance calculations.
+        </p>
+        <div class="flex gap-2 flex-wrap mb-6">
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">JAVASCRIPT</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">FINANCE UI</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">HTML5</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CSS3</span>
+        </div>
+        <a href="https://dhaya2810.github.io/expense/" target="_blank" rel="noopener noreferrer" class="bg-white text-[#0F172A] font-bold px-6 py-3 rounded-full text-sm uppercase tracking-wider hover:bg-red-600 hover:text-white transition-colors self-start inline-flex items-center gap-2 mt-auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Live
+        </a>
+      </div>
+
+      <!-- Project 9 — Hotel Booking Website -->
+      <div class="project-item-card group bg-gradient-to-b from-[#1a1a2e] to-[#0f172a] border border-red-900/30 rounded-[2rem] p-10 flex flex-col shadow-2xl hover:-translate-y-3 hover:border-red-500 hover:shadow-[0_0_50px_-12px_rgba(220,38,38,0.4)] transition-all duration-500 relative overflow-hidden" data-category="ecom" data-featured="false" style="display: none;">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-red-600/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-red-600/20 transition-all duration-500"></div>
+        <div class="flex items-center gap-6 mb-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center text-white font-bold text-3xl shadow-[0_0_30px_rgba(220,38,38,0.3)] group-hover:scale-110 transition-transform duration-500 z-10 relative">HB</div>
+          <div>
+            <h3 class="font-black text-2xl tracking-tight uppercase text-white group-hover:text-red-500 transition-colors">Hotel Booking Website</h3>
+            <p class="text-xs font-bold text-gray-400 tracking-widest uppercase mt-1">TRAVEL &amp; RESERVATION</p>
+          </div>
+        </div>
+        <p class="text-gray-400 font-medium text-[0.8rem] md:text-sm leading-relaxed mb-8 flex-grow z-10 relative">
+          A user-friendly platform to search, compare, and book hotels at the best prices for a seamless and comfortable travel booking experience.
+        </p>
+        <div class="flex gap-2 flex-wrap mb-6">
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">HTML5</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">CSS3</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">JAVASCRIPT</span>
+          <span class="border border-red-900/40 text-gray-400 group-hover:border-red-700/30 group-hover:text-red-400 font-bold px-3 py-1 rounded text-[0.65rem] tracking-widest uppercase transition-colors">BOOKING UI</span>
+        </div>
+        <a href="https://dhaya2810.github.io/hotel/" target="_blank" rel="noopener noreferrer" class="bg-white text-[#0F172A] font-bold px-6 py-3 rounded-full text-sm uppercase tracking-wider hover:bg-red-600 hover:text-white transition-colors self-start inline-flex items-center gap-2 mt-auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Live
+        </a>
+      </div>
+
+    </div>
+
+    <!-- View All Projects Toggle Button -->
+    <div class="mt-14 relative z-10 flex justify-center">
+      <button 
+        id="toggleAllProjectsBtn" 
+        onclick="toggleAllProjects()" 
+        class="bg-[#B91C1C] hover:bg-[#8A121A] text-white font-extrabold text-xs md:text-sm px-8 py-4 rounded-xl transition-all shadow-lg shadow-red-900/30 hover:shadow-red-900/50 hover:scale-105 inline-flex items-center gap-3 cursor-pointer"
+      >
+        <span id="toggleProjectsText">VIEW ALL PROJECTS (9)</span>
+        <svg id="toggleProjectsIcon" class="w-4 h-4 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="relative min-h-screen w-full px-6 md:px-24 py-24 bg-white overflow-hidden flex flex-col items-center justify-center">
+    <img src="./assets/web1.png" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] opacity-5 pointer-events-none z-0" alt="Web">
+    
+    <!-- Swinging Spiderman on the right (Contact) -->
+    <div class="hidden lg:flex absolute top-0 right-[2%] xl:right-[5%] flex-col items-center z-30 pendulum-drop">
+      <div class="pendulum origin-top flex flex-col items-center">
+        <div class="w-[1px] h-[20vh] xl:h-[25vh] bg-gray-400"></div>
+        <img src="./assets/spydy_hang.png" class="w-[220px] xl:w-[260px] object-contain -mt-6 drop-shadow-2xl" alt="Spiderman">
+      </div>
+    </div>
+
+    <div class="contact-header text-center mb-12 relative z-10 flex flex-col items-center">
+      <div class="flex items-center gap-2 text-[0.85rem] font-extrabold tracking-[0.15em] text-[#B91C1C] mb-2">
+        <div class="w-3 h-2 bg-red-700 rounded-sm"></div>
+        GET IN TOUCH
+      </div>
+      <h1 class="text-4xl md:text-[4rem] font-black italic leading-[0.9] text-[#0F172A] uppercase tracking-[-0.02em]" style="text-shadow: 4px 4px 0px #B91C1C;">CONTACT.</h1>
+      <div class="w-16 h-1 bg-red-700 mt-4 rounded-full"></div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8 w-full max-w-5xl relative z-10">
+      
+      <!-- Contact Info -->
+      <div class="flex-1 flex flex-col justify-center gap-6 bg-[#0F172A] rounded-3xl p-10 text-white shadow-xl">
+         <h2 class="font-black text-2xl">Let's Connect</h2>
+         <p class="text-gray-400 text-sm leading-relaxed mb-4">Whether you have a professional opportunity, a collaboration idea, or just want to connect, feel free to reach out!</p>
+         <div class="flex flex-col gap-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-800/50 rounded-full flex items-center justify-center text-red-500 text-xl">📍</div>
+            <div>
+              <p class="text-[0.65rem] text-gray-400 font-bold tracking-widest uppercase mb-1">LOCATION</p>
+              <p class="font-semibold text-sm">Vadambacheri, Coimbatore, Tamil Nadu, India</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-800/50 rounded-full flex items-center justify-center text-red-500 text-xl">✉️</div>
+            <div>
+              <p class="text-[0.65rem] text-gray-400 font-bold tracking-widest uppercase mb-1">EMAIL</p>
+              <a href="mailto:dhayadharneesh@gmail.com" class="font-semibold text-sm hover:text-red-400 transition-colors">dhayadharneesh@gmail.com</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-800/50 rounded-full flex items-center justify-center text-red-500 text-xl">📞</div>
+            <div>
+              <p class="text-[0.65rem] text-gray-400 font-bold tracking-widest uppercase mb-1">PHONE</p>
+              <a href="tel:+916379534712" class="font-semibold text-sm hover:text-red-400 transition-colors">+91 6379534712</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-800/50 rounded-full flex items-center justify-center text-red-500 text-xl">🔗</div>
+            <div>
+              <p class="text-[0.65rem] text-gray-400 font-bold tracking-widest uppercase mb-1">LINKEDIN</p>
+              <a href="https://www.linkedin.com/in/dhayanandhan-gk-3ba2332a6/" target="_blank" rel="noopener noreferrer" class="font-semibold text-sm hover:text-red-400 transition-colors">dhayanandhan-gk</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-800/50 rounded-full flex items-center justify-center text-red-500 text-xl">🌐</div>
+            <div>
+              <p class="text-[0.65rem] text-gray-400 font-bold tracking-widest uppercase mb-1">LIVE PORTFOLIO</p>
+              <a href="https://dhaya2810.github.io/My-Portfolio/" target="_blank" rel="noopener noreferrer" class="font-semibold text-sm hover:text-red-400 transition-colors">dhaya2810.github.io/My-Portfolio</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-800/50 rounded-full flex items-center justify-center text-red-500 text-xl">💻</div>
+            <div>
+              <p class="text-[0.65rem] text-gray-400 font-bold tracking-widest uppercase mb-1">GITHUB</p>
+              <a href="https://github.com/dhaya2810" target="_blank" rel="noopener noreferrer" class="font-semibold text-sm hover:text-red-400 transition-colors">dhaya2810</a>
+            </div>
+          </div>
+       </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form flex-[1.5] bg-white border border-gray-100 rounded-3xl p-8 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.05)]">
+        <form class="flex flex-col gap-6" onsubmit="event.preventDefault(); window.location.href='mailto:dhayadharneesh@gmail.com?subject=Portfolio%20Inquiry&body=' + encodeURIComponent(document.getElementById('msgBody').value);">
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="flex-1 flex flex-col gap-2">
+              <label class="text-xs font-bold text-gray-500 tracking-widest uppercase">YOUR NAME</label>
+              <input type="text" placeholder="John Doe" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-800 font-medium focus:outline-none focus:border-[#B91C1C] focus:ring-4 focus:ring-[#B91C1C]/10 transition-all">
+            </div>
+            <div class="flex-1 flex flex-col gap-2">
+              <label class="text-xs font-bold text-gray-500 tracking-widest uppercase">YOUR EMAIL</label>
+              <input type="email" placeholder="john@example.com" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-800 font-medium focus:outline-none focus:border-[#B91C1C] focus:ring-4 focus:ring-[#B91C1C]/10 transition-all">
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-bold text-gray-500 tracking-widest uppercase">MESSAGE</label>
+            <textarea id="msgBody" rows="4" placeholder="Let's build something amazing together..." required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-800 font-medium resize-none focus:outline-none focus:border-[#B91C1C] focus:ring-4 focus:ring-[#B91C1C]/10 transition-all"></textarea>
+          </div>
+          <button type="submit" class="mt-4 bg-[#B91C1C] hover:bg-[#991b1b] text-white font-extrabold text-sm px-6 py-4 rounded-xl transition-all shadow-lg shadow-red-900/20 hover:shadow-red-900/40 hover:-translate-y-1">
+            SEND MESSAGE
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const spiderImage = document.getElementById('spiderImage');
+    const personImage = document.getElementById('personImage');
+
+    // Ambient floating for profile picture
+    gsap.to('.hanging-circle', {
+      y: 15,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      const logo = document.getElementById('nav-logo');
+      const links = document.querySelectorAll('.nav-link');
+      const hamburger = document.getElementById('hamburger-btn');
+      
+      if (window.scrollY > 50) {
+        nav.classList.add('bg-black', 'shadow-xl', 'py-4');
+        nav.classList.remove('bg-transparent', 'py-6');
+        logo.classList.add('text-white');
+        logo.classList.remove('text-gray-900');
+        hamburger.classList.add('text-white');
+        hamburger.classList.remove('text-gray-900');
+        links.forEach(link => {
+          link.classList.add('text-gray-300', 'hover:text-white');
+          link.classList.remove('text-[#6B7280]', 'hover:text-[#111827]');
+        });
+      } else {
+        nav.classList.remove('bg-black', 'shadow-xl', 'py-4');
+        nav.classList.add('bg-transparent', 'py-6');
+        logo.classList.remove('text-white');
+        logo.classList.add('text-gray-900');
+        
+        const menu = document.getElementById('mobile-menu');
+        if (!menu || !menu.classList.contains('open')) {
+          hamburger.classList.remove('text-white');
+          hamburger.classList.add('text-gray-900');
+        }
+        
+        links.forEach(link => {
+          link.classList.remove('text-gray-300', 'hover:text-white');
+          link.classList.add('text-[#6B7280]', 'hover:text-[#111827]');
+        });
+      }
+    });
+
+    // GSAP ANIMATIONS
+    
+    // Hero Entrance
+    gsap.from('.hero-text', { y: 20, opacity: 0, duration: 1, delay: 0.2 });
+    gsap.from('.hero-title', { y: 100, opacity: 0, duration: 1, stagger: 0.2, delay: 0.4, ease: 'power4.out' });
+    gsap.from('.hero-btns', { y: 20, opacity: 0, duration: 1, delay: 0.8 });
+    gsap.from('.hero-img', { y: 200, opacity: 0, duration: 1.5, delay: 0.5, ease: 'back.out(1.2)' });
+
+    // Fast Font Shuffling on Hover for Hero Name (16 Distinctive Fonts)
+    const heroName = document.getElementById('heroName');
+    const dynamicFonts = [
+      "'Bungee', cursive",
+      "'Permanent Marker', cursive",
+      "'Rubik Glitch', cursive",
+      "'Orbitron', sans-serif",
+      "'Creepster', cursive",
+      "'Press Start 2P', monospace",
+      "'Monoton', cursive",
+      "'Bebas Neue', sans-serif",
+      "'Faster One', cursive",
+      "'VT323', monospace",
+      "'Righteous', cursive",
+      "'Black Ops One', cursive",
+      "'Cinzel Decorative', cursive",
+      "'Rye', cursive",
+      "'Pacifico', cursive",
+      "'Syne', sans-serif"
+    ];
+
+    if (heroName) {
+      let fontInterval = null;
+      let fontIndex = 0;
+
+      heroName.addEventListener('mouseenter', () => {
+        clearInterval(fontInterval);
+        fontInterval = setInterval(() => {
+          fontIndex = (fontIndex + 1) % dynamicFonts.length;
+          heroName.style.fontFamily = dynamicFonts[fontIndex];
+        }, 60); // Fast 60ms switch (~16.6 font changes per second)
+      });
+
+      heroName.addEventListener('mouseleave', () => {
+        clearInterval(fontInterval);
+        heroName.style.fontFamily = "'Montserrat', sans-serif";
+      });
+    }
+
+    // About Section
+    ScrollTrigger.create({
+      trigger: '#about',
+      start: 'top 70%',
+      animation: gsap.timeline()
+        .from('.about-left', { x: -50, opacity: 0, duration: 1, ease: 'power3.out' })
+        .from('.about-web-drop', { y: -150, opacity: 0, duration: 1.5, stagger: 0.2, ease: 'bounce.out' }, '-=0.5')
+        .from('.pendulum-drop', { y: -300, opacity: 0, duration: 1.5, ease: 'bounce.out' }, '-=0.5')
+    });
+
+    // Skills Section
+    ScrollTrigger.create({
+      trigger: '#skills',
+      start: 'top 70%',
+      animation: gsap.timeline()
+        .from('.skills-header', { y: 30, opacity: 0, duration: 0.8 })
+        .from('.skill-card', { y: 30, opacity: 0, duration: 0.5, stagger: 0.1 }, '-=0.4')
+        .from('.skills-spider', { y: 100, opacity: 0, duration: 1, ease: 'back.out(1.7)' }, '-=0.5')
+    });
+
+    // Experience Section
+    ScrollTrigger.create({
+      trigger: '#experience',
+      start: 'top 70%',
+      animation: gsap.timeline()
+        .from('.projects-header', { y: 30, opacity: 0, duration: 0.8 })
+        .from('.project-card', { y: 30, opacity: 0, duration: 0.5, stagger: 0.1 }, '-=0.4')
+        .from('.projects-spider', { x: -100, opacity: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
+    });
+
+    // Contact Section
+    ScrollTrigger.create({
+      trigger: '#contact',
+      start: 'top 70%',
+      animation: gsap.timeline()
+        .from('.contact-header', { y: 30, opacity: 0, duration: 0.8 })
+        .from('.contact-form', { scale: 0.95, opacity: 0, duration: 0.8, ease: 'power2.out' }, '-=0.4')
+        .from('.contact-spider', { y: -100, opacity: 0, duration: 1, ease: 'bounce.out' }, '-=0.5')
+    });
+
+    // Interactive Project Filter & View All Projects
+    let currentProjFilter = 'all';
+    let isAllProjectsExpanded = false;
+
+    function renderProjects() {
+      const cards = document.querySelectorAll('.project-item-card');
+      const toggleBtn = document.getElementById('toggleAllProjectsBtn');
+      const toggleText = document.getElementById('toggleProjectsText');
+      const toggleIcon = document.getElementById('toggleProjectsIcon');
+
+      cards.forEach((card) => {
+        const cat = card.getAttribute('data-category');
+        const isFeatured = card.getAttribute('data-featured') === 'true';
+        const matchesFilter = (currentProjFilter === 'all' || cat === currentProjFilter);
+
+        if (!matchesFilter) {
+          card.style.display = 'none';
+        } else {
+          if (currentProjFilter === 'all' && !isAllProjectsExpanded && !isFeatured) {
+            card.style.display = 'none';
+          } else {
+            card.style.display = 'flex';
+          }
+        }
+      });
+
+      if (toggleBtn) {
+        if (currentProjFilter === 'all') {
+          toggleBtn.style.display = 'inline-flex';
+          if (isAllProjectsExpanded) {
+            toggleText.textContent = 'SHOW LESS';
+            if (toggleIcon) toggleIcon.style.transform = 'rotate(180deg)';
+          } else {
+            toggleText.textContent = 'VIEW ALL PROJECTS (9)';
+            if (toggleIcon) toggleIcon.style.transform = 'rotate(0deg)';
+          }
+        } else {
+          toggleBtn.style.display = 'none';
+        }
+      }
+    }
+
+    function filterProjects(category) {
+      currentProjFilter = category;
+      
+      document.querySelectorAll('.proj-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-filter') === category) {
+          btn.classList.add('active-filter');
+        } else {
+          btn.classList.remove('active-filter');
+        }
+      });
+
+      renderProjects();
+    }
+
+    function toggleAllProjects() {
+      isAllProjectsExpanded = !isAllProjectsExpanded;
+      renderProjects();
+      
+      if (isAllProjectsExpanded) {
+        const firstExtra = document.querySelector('.project-item-card:not([data-featured="true"])');
+        if (firstExtra) {
+          firstExtra.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+    }
+
+    // Initialize projects state
+    renderProjects();
+
+    // ==========================================
+    // SPIDER-MAN INTERACTIVE WEB MOUSE TRACKER
+    // ==========================================
+    (function initSpideyWebTracker() {
+      const canvas = document.getElementById('spidey-web-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let width = 0;
+      let height = 0;
+      let dpr = window.devicePixelRatio || 1;
+
+      function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = window.devicePixelRatio || 1;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        initNodes();
+      }
+
+      const mouse = {
+        x: width / 2,
+        y: height / 2,
+        targetX: width / 2,
+        targetY: height / 2,
+        isActive: false,
+        speed: 0
+      };
+
+      let lastX = width / 2;
+      let lastY = height / 2;
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.targetX = e.clientX;
+        mouse.targetY = e.clientY;
+        mouse.isActive = true;
+
+        const dx = mouse.targetX - lastX;
+        const dy = mouse.targetY - lastY;
+        mouse.speed = Math.sqrt(dx * dx + dy * dy);
+        lastX = mouse.targetX;
+        lastY = mouse.targetY;
+
+        // Spawn delicate trailing silk particles when moving fast
+        if (mouse.speed > 7 && trailParticles.length < 30) {
+          trailParticles.push({
+            x: mouse.targetX + (Math.random() - 0.5) * 8,
+            y: mouse.targetY + (Math.random() - 0.5) * 8,
+            vx: (Math.random() - 0.5) * 1.2,
+            vy: (Math.random() - 0.5) * 1.2 - 0.4,
+            alpha: 0.65,
+            size: Math.random() * 2 + 1
+          });
+        }
+      }, { passive: true });
+
+      window.addEventListener('mouseleave', () => {
+        mouse.isActive = false;
+      });
+
+      // Web bursts on click (Web Shooter Splat Effect)
+      const webBursts = [];
+      window.addEventListener('click', (e) => {
+        webBursts.push({
+          x: e.clientX,
+          y: e.clientY,
+          radius: 0,
+          maxRadius: Math.random() * 30 + 50,
+          alpha: 0.9,
+          spokes: 8,
+          rings: 3
+        });
+      });
+
+      // Floating Web Nodes
+      let webNodes = [];
+      function initNodes() {
+        webNodes = [];
+        const nodeCount = Math.min(38, Math.max(18, Math.floor(width / 45)));
+        for (let i = 0; i < nodeCount; i++) {
+          webNodes.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.45,
+            vy: (Math.random() - 0.5) * 0.45,
+            radius: Math.random() * 1.6 + 1.2
+          });
+        }
+      }
+
+      const trailParticles = [];
+
+      function drawWebBursts() {
+        for (let i = webBursts.length - 1; i >= 0; i--) {
+          const b = webBursts[i];
+          b.radius += (b.maxRadius - b.radius) * 0.12;
+          b.alpha -= 0.022;
+
+          if (b.alpha <= 0) {
+            webBursts.splice(i, 1);
+            continue;
+          }
+
+          ctx.save();
+          // Radiating Spokes
+          ctx.strokeStyle = `rgba(185, 28, 28, ${b.alpha * 0.75})`;
+          ctx.lineWidth = 1.2;
+
+          for (let s = 0; s < b.spokes; s++) {
+            const angle = (s * 2 * Math.PI) / b.spokes;
+            const ex = b.x + Math.cos(angle) * b.radius;
+            const ey = b.y + Math.sin(angle) * b.radius;
+            ctx.beginPath();
+            ctx.moveTo(b.x, b.y);
+            ctx.lineTo(ex, ey);
+            ctx.stroke();
+
+            // Web tip droplet
+            ctx.beginPath();
+            ctx.arc(ex, ey, 1.6, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(185, 28, 28, ${b.alpha * 0.85})`;
+            ctx.fill();
+          }
+
+          // Concentric Rings
+          ctx.strokeStyle = `rgba(100, 116, 139, ${b.alpha * 0.55})`;
+          ctx.lineWidth = 0.9;
+          for (let r = 1; r <= b.rings; r++) {
+            const ringRad = (b.radius * r) / b.rings;
+            ctx.beginPath();
+            for (let s = 0; s <= b.spokes; s++) {
+              const angle = (s * 2 * Math.PI) / b.spokes;
+              const rx = b.x + Math.cos(angle) * ringRad;
+              const ry = b.y + Math.sin(angle) * ringRad;
+              if (s === 0) ctx.moveTo(rx, ry);
+              else ctx.lineTo(rx, ry);
+            }
+            ctx.stroke();
+          }
+
+          ctx.restore();
+        }
+      }
+
+      function drawTrail() {
+        for (let i = trailParticles.length - 1; i >= 0; i--) {
+          const p = trailParticles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= 0.022;
+
+          if (p.alpha <= 0) {
+            trailParticles.splice(i, 1);
+            continue;
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(185, 28, 28, ${p.alpha * 0.6})`;
+          ctx.fill();
+        }
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Smooth spring tracking to mouse
+        mouse.x += (mouse.targetX - mouse.x) * 0.16;
+        mouse.y += (mouse.targetY - mouse.y) * 0.16;
+
+        // Corner silk anchor strands
+        const anchors = [
+          { x: 0, y: 0 },
+          { x: width, y: 0 },
+          { x: 0, y: height },
+          { x: width, y: height }
+        ];
+
+        if (mouse.isActive) {
+          anchors.forEach((anc) => {
+            const dx = mouse.x - anc.x;
+            const dy = mouse.y - anc.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const maxDist = Math.max(width, height) * 0.9;
+
+            if (dist < maxDist) {
+              const alpha = (1 - dist / maxDist) * 0.24;
+              const wave = Math.sin(Date.now() * 0.002) * 12;
+              const midX = (anc.x + mouse.x) / 2 + wave;
+              const midY = (anc.y + mouse.y) / 2 + wave;
+
+              ctx.beginPath();
+              ctx.moveTo(anc.x, anc.y);
+              ctx.quadraticCurveTo(midX, midY, mouse.x, mouse.y);
+              ctx.strokeStyle = `rgba(185, 28, 28, ${alpha})`;
+              ctx.lineWidth = 0.9;
+              ctx.stroke();
+            }
+          });
+        }
+
+        // Floating web nodes & interconnecting mesh
+        for (let i = 0; i < webNodes.length; i++) {
+          const node = webNodes[i];
+          node.x += node.vx;
+          node.y += node.vy;
+
+          if (node.x < 0 || node.x > width) node.vx *= -1;
+          if (node.y < 0 || node.y > height) node.vy *= -1;
+
+          // Subtle web node dot
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(100, 116, 139, 0.22)';
+          ctx.fill();
+
+          // Connect node to nearby nodes
+          for (let j = i + 1; j < webNodes.length; j++) {
+            const node2 = webNodes[j];
+            const ndx = node.x - node2.x;
+            const ndy = node.y - node2.y;
+            const nDist = Math.sqrt(ndx * ndx + ndy * ndy);
+
+            if (nDist < 115) {
+              const alpha = (1 - nDist / 115) * 0.16;
+              ctx.beginPath();
+              ctx.moveTo(node.x, node.y);
+              ctx.lineTo(node2.x, node2.y);
+              ctx.strokeStyle = `rgba(148, 163, 184, ${alpha})`;
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+
+          // Connect node to mouse cursor if within range
+          if (mouse.isActive) {
+            const mdx = mouse.x - node.x;
+            const mdy = mouse.y - node.y;
+            const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+
+            if (mDist < 200) {
+              const alpha = (1 - mDist / 200) * 0.5;
+              ctx.beginPath();
+              ctx.moveTo(node.x, node.y);
+              ctx.lineTo(mouse.x, mouse.y);
+
+              if (i % 2 === 0) {
+                ctx.strokeStyle = `rgba(185, 28, 28, ${alpha})`;
+                ctx.lineWidth = 1.0;
+              } else {
+                ctx.strokeStyle = `rgba(100, 116, 139, ${alpha * 0.8})`;
+                ctx.lineWidth = 0.75;
+              }
+              ctx.stroke();
+
+              // Highlight droplet at node when active
+              ctx.beginPath();
+              ctx.arc(node.x, node.y, 2.2, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(185, 28, 28, ${alpha * 0.9})`;
+              ctx.fill();
+            }
+          }
+        }
+
+        drawTrail();
+        drawWebBursts();
+
+        requestAnimationFrame(render);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      requestAnimationFrame(render);
+    })();
+  </script>
+
 </body>
 </html>
